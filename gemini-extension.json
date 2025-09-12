@@ -1,0 +1,34 @@
+{
+  "name": "AlloyDB for PostgreSQL",
+  "version": "0.1.0",
+  "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
+  "mcpServers": {
+    "AlloyDB Admin": {
+      "command": "${extensionPath}${/}toolbox",
+      "args": [
+        "--prebuilt",
+        "alloydb-postgres-admin",
+        "--stdio"
+      ],
+      "env": {
+        "API_KEY": "$API_KEY"
+      }
+    },
+    "AlloyDB": {
+      "command": "${extensionPath}${/}toolbox",
+      "args": [
+        "--prebuilt",
+        "alloydb-postgres",
+        "--stdio"
+      ],
+      "env": {
+        "ALLOYDB_POSTGRES_PROJECT": "$ALLOYDB_POSTGRES_PROJECT",
+        "ALLOYDB_POSTGRES_REGION": "$ALLOYDB_POSTGRES_REGION",
+        "ALLOYDB_POSTGRES_CLUSTER": "$ALLOYDB_POSTGRES_CLUSTER",
+        "ALLOYDB_POSTGRES_INSTANCE": "$ALLOYDB_POSTGRES_INSTANCE",
+        "ALLOYDB_POSTGRES_DATABASE": "$ALLOYDB_POSTGRES_DATABASE"
+      }
+    }
+  },
+  "contextFileName": "ALLOYDB.md"
+}
