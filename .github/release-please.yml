@@ -12,23 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-
-name: release-please
-
-jobs:
-  release-please:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: googleapis/release-please-action@v4.3.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
+handleGHRelease: true
+packageName: alloydb-gemini-cli-extension
+releaseType: simple
+bumpMinorPreMajor: true
+bumpPatchForMinorPreMajor: true
+versionFile: "version.txt"
