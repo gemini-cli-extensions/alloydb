@@ -13,6 +13,4 @@
 # limitations under the License.
 
 handleGHRelease: true
-packageName: alloydb-gemini-cli-extension
-releaseType: simple
-versionFile: "version.txt"
+manifest: true
