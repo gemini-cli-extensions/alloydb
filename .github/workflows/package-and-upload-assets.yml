@@ -39,50 +39,49 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
 
       - name: Get version from tag
+        id: get_version
         shell: bash
         run: |
-          TAG_NAME=${{ github.event.release.tag_name }}
-          echo "VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
+          TAG_NAME="${{ github.event.release.tag_name }}"
+          echo "VERSION_NUMBER=${TAG_NAME#v}" >> $GITHUB_OUTPUT
+      
+      - name: Debug Print Version
+        run: |
+          echo "Got version number: ${{ steps.get_version.outputs.VERSION_NUMBER }}"
 
       - name: Create release archive
+        id: create_archive
         shell: bash
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION_NUMBER }}
+          OS_NAME: ${{ matrix.platform.os }}
+          ARCH_NAME: ${{ matrix.platform.arch }}
         run: |
-          OS="${{ matrix.platform.os }}"
-          ARCH="${{ matrix.platform.arch }}"
-          VERSION="${{ env.VERSION }}"
+          echo "Packaging for v${VERSION} on ${OS_NAME}-${ARCH_NAME}"
           
-          # 1. Define source and target filenames
           SOURCE_BIN_SUFFIX=""
           TARGET_BIN_SUFFIX=""
-          ARCHIVE_NAME="cli-extension-${OS}-${ARCH}.tar.gz" # Default to .tar.gz
+          ARCHIVE_NAME="cli-extension-${OS_NAME}-${ARCH_NAME}.tar.gz"
           
-          if [ "$OS" == "windows" ]; then
+          if [ "$OS_NAME" == "windows" ]; then
             TARGET_BIN_SUFFIX=".exe"
-            ARCHIVE_NAME="cli-extension-${OS}-${ARCH}.zip" # Use .zip for Windows
-            # SOURCE_BIN_SUFFIX=".exe" # Uncomment if your source binary has .exe
+            ARCHIVE_NAME="cli-extension-${OS_NAME}-${ARCH_NAME}.zip"
           fi
 
-          # This is the full name of the binary in your repo (from your Step 1)
-          SOURCE_BINARY="toolbox-v${VERSION}-${OS}-${ARCH}${SOURCE_BIN_SUFFIX}"
-          
-          # This is the new name for the binary *inside* the archive (from your Step 4)
+          SOURCE_BINARY="toolbox-v${VERSION}-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX}"
           TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
           
-          # 2. Check that the pre-built binary exists
           if [ ! -f "$SOURCE_BINARY" ]; then
-            echo "Error: Binary '${SOURCE_BINARY}' not found!"
+            echo "Error: Source binary '${SOURCE_BINARY}' not found!"
+            ls -l
             exit 1
           fi
 
-          # 3. Create a staging directory to ensure a clean archive root
           mkdir staging
-          
-          # 4. Copy and rename all files into the staging directory (from your Step 4)
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
           cp gemini-extension.json ALLOYDB.md staging/
           
-          # 5. Create the final archive (as requested in your Step 4)
-          if [ "$OS" == "windows" ]; then
+          if [ "$OS_NAME" == "windows" ]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
           else
             tar -czvf "${ARCHIVE_NAME}" -C staging .
@@ -90,6 +89,8 @@ jobs:
           
           echo "Created archive: ${ARCHIVE_NAME}"
           
+          echo "ARCHIVE_PATH=${ARCHIVE_NAME}" >> $GITHUB_OUTPUT
+
       - name: Upload archive as workflow artifact
         uses: actions/upload-artifact@v4
         with:
@@ -101,13 +102,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: package
     permissions:
-      contents: write # Required to upload assets to the release
+      contents: write 
     steps:
-      - name: Download all archives from workflow artifacts
+      - name: Download all archives from workflow artifact
         uses: actions/download-artifact@v4
         with:
           name: release-archives
-          path: release-archives # Download to a local dir
+          path: release-archives
 
       - name: Upload all assets to GitHub Release
         env:
