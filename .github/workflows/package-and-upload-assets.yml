@@ -64,7 +64,7 @@ jobs:
             SOURCE_BIN_SUFFIX=".exe"
             TARGET_BIN_SUFFIX=".exe"
           fi
-          ARCHIVE_NAME="${OS_NAME}.${ARCH_NAME}.${BASE_NAME}.${ARCHIVE_EXTENSION}"
+          ARCHIVE_NAME="${BASE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
           
           # TODO: Source binary version should be indepedent of tag version
           # TODO: Update name according to convention
