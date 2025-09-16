@@ -106,7 +106,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Download all archives from workflow artifact
         uses: actions/download-artifact@v4
         with:
@@ -118,4 +118,4 @@ jobs:
         run: |
           gh release upload \
             ${{ github.event.release.tag_name }} \
-            release-archives/*
+            release-archives/*/*
