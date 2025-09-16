@@ -80,7 +80,6 @@ jobs:
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
           cp gemini-extension.json ALLOYDB.md LICENSE staging/
 
-          # TODO: Edit archive name according to convention
           if [ "$OS_NAME" == "windows" ]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
           else
@@ -94,7 +93,7 @@ jobs:
       - name: Upload archive as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: release-archive-${{ matrix.platform.os }}-${{ matrix.platform.arch }}
+          name: toolbox-${{ matrix.platform.os }}-${{ matrix.platform.arch }}
           path: ${{ steps.create_archive.outputs.ARCHIVE_PATH }}
 
   upload:
