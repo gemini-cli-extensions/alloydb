@@ -31,8 +31,8 @@ jobs:
     strategy:
       matrix:
         platform:
-          # - { os: "linux", arch: "amd64" }
-          # - { os: "darwin", arch: "arm64" }
+          - { os: "linux", arch: "amd64" }
+          - { os: "darwin", arch: "arm64" }
           - { os: "darwin", arch: "amd64" }
           - { os: "windows", arch: "amd64" }
     steps:
