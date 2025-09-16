@@ -1,3 +1,5 @@
 *.exe filter=lfs diff=lfs merge=lfs -text
 *.dmg filter=lfs diff=lfs merge=lfs -text
 *darwin-amd64* filter=lfs diff=lfs merge=lfs -text
+toolbox-v0.14.0-darwin-amd64 filter=lfs diff=lfs merge=lfs -text
+toolbox-v0.14.0-windows-amd64.exe filter=lfs diff=lfs merge=lfs -text
