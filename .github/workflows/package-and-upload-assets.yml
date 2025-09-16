@@ -17,9 +17,6 @@ name: Package and Upload Release Assets
 on:
   release:
     types: [created]
-  push:
-    branches:
-      - 'release-package'
 
 jobs:
   package:
