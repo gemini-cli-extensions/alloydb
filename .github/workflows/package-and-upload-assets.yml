@@ -14,6 +14,8 @@
 
 name: Package and Upload Release Assets
 
+env:
+  PACKAGE_NAME: "alloydb-gemini-cli-extension"
 on:
   release:
     types: [created]
@@ -22,6 +24,7 @@ jobs:
   package:
     name: Package for ${{ matrix.platform.os }}-${{ matrix.platform.arch }}
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         platform:
@@ -51,8 +54,6 @@ jobs:
           ARCH_NAME: ${{ matrix.platform.arch }}
         run: |
           echo "Packaging for v${VERSION} on ${OS_NAME}-${ARCH_NAME}"
-
-          BASE_NAME="alloydb-cli-extension"
           ARCHIVE_EXTENSION="tar.gz"
           
           SOURCE_BIN_SUFFIX=""
@@ -63,7 +64,7 @@ jobs:
             SOURCE_BIN_SUFFIX=".exe"
             TARGET_BIN_SUFFIX=".exe"
           fi
-          ARCHIVE_NAME="${BASE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
+          ARCHIVE_NAME="${PACKAGE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
 
           SOURCE_BINARY=$(ls toolbox-v*-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX} | head -n 1)
 
