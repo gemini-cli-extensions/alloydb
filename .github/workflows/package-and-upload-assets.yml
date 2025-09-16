@@ -41,24 +41,44 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Get version from tag
-        id: get_version
+      - name: Get Toolbox Version
+        id: get_toolbox_version
         shell: bash
         run: |
-          TAG_NAME="${{ github.event.release.tag_name }}"
-          echo "VERSION_NUMBER=${TAG_NAME#v}" >> $GITHUB_OUTPUT
+          TOOLBOX_VERSION=$(cat toolbox_version.txt)
+          echo "Found toolbox version: ${TOOLBOX_VERSION}"
+          echo "TOOLBOX_VERSION=${TOOLBOX_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Download Source Binary
+        shell: bash
+        env:
+          VERSION: ${{ steps.get_toolbox_version.outputs.TOOLBOX_VERSION }}
+          OS_NAME: ${{ matrix.platform.os }}
+          ARCH_NAME: ${{ matrix.platform.arch }}
+        run: |
+          BINARY_NAME="toolbox"
+          if [ "$OS_NAME" == "windows" ]; then
+            BINARY_NAME="toolbox.exe"
+          fi
+          
+          DOWNLOAD_URL="https://storage.googleapis.com/genai-toolbox/v${VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
+          
+          echo "Downloading binary from: ${DOWNLOAD_URL}"
+          curl -L --fail -o "${BINARY_NAME}" "${DOWNLOAD_URL}"
+          
+          echo "Binary downloaded and prepared."
+          ls -l
 
       - name: Create release archive
         id: create_archive
         shell: bash
         env:
-          VERSION: ${{ steps.get_version.outputs.VERSION_NUMBER }}
+          VERSION: ${{ steps.get_toolbox_version.outputs.TOOLBOX_VERSION }}
           OS_NAME: ${{ matrix.platform.os }}
           ARCH_NAME: ${{ matrix.platform.arch }}
         run: |
-          echo "Packaging for v${VERSION} on ${OS_NAME}-${ARCH_NAME}"
+          echo "Packaging toolbox version ${VERSION} on ${OS_NAME}-${ARCH_NAME}"
           ARCHIVE_EXTENSION="tar.gz"
-          
           SOURCE_BIN_SUFFIX=""
           TARGET_BIN_SUFFIX=""
           
@@ -69,17 +89,13 @@ jobs:
           fi
           ARCHIVE_NAME="${PACKAGE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
 
-          SOURCE_BINARY=$(ls toolbox-v*-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX} | head -n 1)
+          SOURCE_BINARY="toolbox${SOURCE_BIN_SUFFIX}"
+          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
 
-          # Check if the command found any file at all
-          if [ -z "$SOURCE_BINARY" ]; then
-            echo "Error: Could not find any source binary matching the pattern!"
-            ls -l
+          if [ ! -f "$SOURCE_BINARY" ]; then
+            echo "Error: Downloaded source binary '${SOURCE_BINARY}' not found!"
             exit 1
           fi
-          echo "Found source binary via pattern matching: ${SOURCE_BINARY}"
-
-          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
 
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
