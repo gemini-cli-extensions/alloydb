@@ -57,16 +57,15 @@ jobs:
           echo "Packaging for v${VERSION} on ${OS_NAME}-${ARCH_NAME}"
           
           SOURCE_BIN_SUFFIX=""
-          TARGET_BIN_SUFFIX=""
           ARCHIVE_NAME="cli-extension-${OS_NAME}-${ARCH_NAME}.tar.gz"
           
           if [ "$OS_NAME" == "windows" ]; then
-            TARGET_BIN_SUFFIX=".exe"
+            SOURCE_BIN_SUFFIX=".exe"
             ARCHIVE_NAME="cli-extension-${OS_NAME}-${ARCH_NAME}.zip"
           fi
 
           SOURCE_BINARY="toolbox-v${VERSION}-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX}"
-          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
+          TARGET_BINARY="toolbox"
           
           if [ ! -f "$SOURCE_BINARY" ]; then
             echo "Error: Source binary '${SOURCE_BINARY}' not found!"
@@ -76,7 +75,7 @@ jobs:
 
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
-          cp gemini-extension.json ALLOYDB.md staging/
+          cp gemini-extension.json ALLOYDB.md LICENSE staging/
           
           if [ "$OS_NAME" == "windows" ]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
