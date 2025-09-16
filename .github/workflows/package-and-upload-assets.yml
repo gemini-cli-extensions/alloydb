@@ -64,17 +64,18 @@ jobs:
             TARGET_BIN_SUFFIX=".exe"
           fi
           ARCHIVE_NAME="${BASE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
-          
-          # TODO: Source binary version should be indepedent of tag version
-          # TODO: Update name according to convention
-          SOURCE_BINARY="toolbox-v${VERSION}-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX}"
-          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
-          
-          if [ ! -f "$SOURCE_BINARY" ]; then
-            echo "Error: Source binary '${SOURCE_BINARY}' not found!"
+
+          SOURCE_BINARY=$(ls toolbox-v*-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX} | head -n 1)
+
+          # Check if the command found any file at all
+          if [ -z "$SOURCE_BINARY" ]; then
+            echo "Error: Could not find any source binary matching the pattern!"
             ls -l
             exit 1
           fi
+          echo "Found source binary via pattern matching: ${SOURCE_BINARY}"
+
+          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
 
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
