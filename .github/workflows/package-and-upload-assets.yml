@@ -61,7 +61,7 @@ jobs:
             BINARY_NAME="toolbox.exe"
           fi
           
-          DOWNLOAD_URL="https://storage.googleapis.com/genai-toolbox/$v{VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
+          DOWNLOAD_URL="https://storage.googleapis.com/genai-toolbox/v${VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
           
           echo "Downloading binary from: ${DOWNLOAD_URL}"
           curl -L --fail -o "${BINARY_NAME}" "${DOWNLOAD_URL}"
