@@ -1,5 +1,5 @@
 {
-  "name": "AlloyDB for PostgreSQL",
+  "name": "alloydb",
   "version": "0.1.0",
   "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
   "mcpServers": {
@@ -9,10 +9,7 @@
         "--prebuilt",
         "alloydb-postgres-admin",
         "--stdio"
-      ],
-      "env": {
-        "API_KEY": "$API_KEY"
-      }
+      ]
     },
     "AlloyDB": {
       "command": "${extensionPath}${/}toolbox",

@@ -1,18 +1,15 @@
 # Gemini CLI Extension - AlloyDB for PostgreSQL
 
-This Gemini CLI extension provides a set of tools to interact with [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) instances. It allows you to manage your databases, execute queries, and explore schemas directly from the [Gemini CLI](https://google-gemini.github.io/gemini-cli/), using natural language prompts.
+Instantly manage and query your [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) databases using the power of natural language, directly from your command line. Go from an idea to a running cluster and queryable data in minutes, without ever leaving your terminal.
 
-## Features
+Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extension.md).
 
-*   **Integrated with Gemini CLI:** As a Google-developed extension, it integrates seamlessly into the Gemini CLI environment, making security an accessible part of your workflow.
-*   **Connect to AlloyDB for PostgreSQL:** Securely connect to your AlloyDB instances.
-*   **Explore Database Schema:** List databases, tables, views, and schemas.
-*   **Query your Database:** Execute SQL queries against your database.
+## Why Use the AlloyDB Extension?
 
-## Supported Tools
-
-* `list_tables`
-* `execute_sql`
+*   **Natural Language Management:** Stop wrestling with complex commands. Provision infrastructure, manage users, and query data by describing what you want in plain English.
+*   **Seamless Workflow:** Stay in your CLI. No need to constantly switch contexts to the GCP console for common database tasks.
+*   **Full Lifecycle Control:** Manage the entire lifecycle of your database, from creating clusters and instances to exploring schemas and running queries.
+*   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
 
 ## Prerequisites
 
@@ -20,11 +17,12 @@ Before you begin, ensure you have the following:
 
 *   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed.
 *   A Google Cloud project with the **AlloyDB Admin API** enabled.
-*   IAM Permissions
+*   IAM Permissions:
+    *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
+    *   AlloyDB Client (`roles/alloydb.client`) (for connecting and querying)
+    *   Service Usage Consumer (`roles/serviceusage.serviceUsageConsumer`)
 
 ## Installation
-
-To install the extension, use the `gemini extensions install` command:
 
 ```bash
 gemini extensions install github.com/gemini-cli-extensions/alloydb.git
@@ -32,27 +30,59 @@ gemini extensions install github.com/gemini-cli-extensions/alloydb.git
 
 ## Configuration
 
+Set the following environment variables before starting the Gemini CLI:
+
 *   `ALLOYDB_POSTGRES_PROJECT`: The GCP project ID.
-*   `ALLOYDB_POSTGRES_REGION`: The region of the AlloyDB instance.
+*   `ALLOYDB_POSTGRES_REGION`: The region of the AlloyDB instance (e.g., `us-central1`).
 *   `ALLOYDB_POSTGRES_CLUSTER`: The ID of the AlloyDB cluster.
 *   `ALLOYDB_POSTGRES_INSTANCE`: The ID of the AlloyDB instance.
 *   `ALLOYDB_POSTGRES_DATABASE`: The name of the database.
-*   `ALLOYDB_POSTGRES_USER`: (Optional) The database username. If unspecified, defaults to using IAM user.
-*   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user. If unspecified, defaults to using IAM user.
-*   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type. Defaults to public.
+*   `ALLOYDB_POSTGRES_USER`: (Optional) The database username.
+*   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user.
+*   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC` or `PRIVATE`). Defaults to `PUBLIC`.
 
+### Private IP
 
-## Usage
+When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
 
-* Provision Infrastructure
-* Explore Schemas and Data
-* Generate code
+## Usage Examples
 
+Interact with AlloyDB using natural language right from your IDE:
 
-## Security
+*   **Provision Infrastructure:**
+    * "Create a new AlloyDB cluster named 'e-commerce-prod' in the 'my-gcp-project' project."
+    * "Add a read-only instance to my 'e-commerce-prod' cluster."
+    * "Create a new user named 'analyst' with read access to all tables."
 
-This extension executes commands against your AlloyDB database. Always review the generated SQL queries before execution, especially for write operations.
+*   **Explore Schemas and Data:**
+    * "Show me all tables in the 'orders' database."
+    * "What are the columns in the 'products' table?"
+    * "How many orders were placed in the last 30 days, and what were the top 5 most purchased items?"
 
-## Disclaimer
+*   **Generate Code:**
+    * "Generate a Python dataclass to represent the 'customers' table."
 
-This is not an officially supported Google product. This extension is under active development, and breaking changes may be introduced.
+## Supported Tools
+
+This extension provides a comprehensive set of tools:
+
+*   **Admin:**
+	* `create_cluster`: Use this tool to create an AlloyDB cluster.
+	* `create_instance`: Use this tool to create an AlloyDB instance (PRIMARY, READ-POOL, or SECONDARY).
+	* `create_user`: Use this tool to create ALLOYDB-BUILT-IN or IAM-based users for an AlloyDB cluster.
+	* `get_operation`: Use this tool to poll the operations API until the operation is done.
+	* `list_clusters`: Use this tool to list clusters in a given project and location.
+	* `list_instances`: Use this tool to list instances in a given project and location.
+	* `list_users`: Use this tool to list users in a given project and location.
+
+*   **Data:**
+    * `list_tables`: Lists tables in the database.
+    * `execute_sql`: Executes a SQL query.
+
+## Additional Extensions
+
+Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including a generic [PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres).
+
+## Troubleshooting
+
+* "cannot execute binary file": Ensure the correct binary for your OS/Architecture has been downloaded. See [Installing the server](https://googleapis.github.io/genai-toolbox/getting-started/introduction/#installing-the-server) for more information.
