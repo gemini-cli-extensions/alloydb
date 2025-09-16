@@ -41,8 +41,8 @@ jobs:
       - name: Get version from tag
         shell: bash
         run: |
-          TAG=${{ github.event.release.tag_name }}
-          echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+          TAG_NAME=${{ github.event.release.tag_name }}
+          echo "VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
 
       - name: Create release archive
         shell: bash
