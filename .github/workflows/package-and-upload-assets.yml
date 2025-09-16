@@ -14,8 +14,11 @@
 
 name: Package and Upload Release Assets
 
+# Global variables
 env:
   PACKAGE_NAME: "alloydb-gemini-cli-extension"
+  FILES_TO_PACKAGE: "gemini-extension.json ALLOYDB.md LICENSE"
+
 on:
   release:
     types: [created]
@@ -80,7 +83,7 @@ jobs:
 
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
-          cp gemini-extension.json ALLOYDB.md LICENSE staging/
+          cp ${FILES_TO_PACKAGE} staging/
 
           if [ "$OS_NAME" == "windows" ]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
