@@ -59,7 +59,9 @@ jobs:
             SOURCE_BIN_SUFFIX=".exe"
             ARCHIVE_NAME="cli-extension-${OS_NAME}-${ARCH_NAME}.zip"
           fi
-
+          
+          # TODO: Source binary version should be indepedent of tag version
+          # TODO: Update name according to convention
           SOURCE_BINARY="toolbox-v${VERSION}-${OS_NAME}-${ARCH_NAME}${SOURCE_BIN_SUFFIX}"
           TARGET_BINARY="toolbox"
           
@@ -72,7 +74,8 @@ jobs:
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
           cp gemini-extension.json ALLOYDB.md LICENSE staging/
-          
+
+          # TODO: Edit archive name according to convention
           if [ "$OS_NAME" == "windows" ]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
           else
