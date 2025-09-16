@@ -18,6 +18,7 @@ name: Package and Upload Release Assets
 env:
   PACKAGE_NAME: "alloydb-gemini-cli-extension"
   FILES_TO_PACKAGE: "gemini-extension.json ALLOYDB.md LICENSE"
+  GCS_BUCKET_URL: "https://storage.googleapis.com/genai-toolbox"
 
 on:
   release:
@@ -31,10 +32,10 @@ jobs:
     strategy:
       matrix:
         platform:
-          - { os: "linux", arch: "amd64" }
-          - { os: "darwin", arch: "arm64" }
-          - { os: "darwin", arch: "amd64" }
-          - { os: "windows", arch: "amd64" }
+          - { os: "linux",   arch: "amd64", binary_suffix: "",    archive_extension: "tar.gz" }
+          - { os: "darwin",  arch: "arm64", binary_suffix: "",    archive_extension: "tar.gz" }
+          - { os: "darwin",  arch: "amd64", binary_suffix: "",    archive_extension: "tar.gz" }
+          - { os: "windows", arch: "amd64", binary_suffix: ".exe",  archive_extension: "zip"    }
     steps:
       - name: Checkout code at the new tag
         uses: actions/checkout@v4
@@ -43,25 +44,21 @@ jobs:
 
       - name: Get Toolbox Version
         id: get_toolbox_version
-        shell: bash
         run: |
           TOOLBOX_VERSION=$(cat toolbox_version.txt)
           echo "Found toolbox version: ${TOOLBOX_VERSION}"
           echo "TOOLBOX_VERSION=${TOOLBOX_VERSION}" >> $GITHUB_OUTPUT
 
       - name: Download Source Binary
-        shell: bash
         env:
-          VERSION: ${{ steps.get_toolbox_version.outputs.TOOLBOX_VERSION }}
+          TOOLBOX_VERSION: ${{ steps.get_toolbox_version.outputs.TOOLBOX_VERSION }}
           OS_NAME: ${{ matrix.platform.os }}
           ARCH_NAME: ${{ matrix.platform.arch }}
+          BINARY_SUFFIX: ${{ matrix.platform.binary_suffix }}
         run: |
-          BINARY_NAME="toolbox"
-          if [ "$OS_NAME" == "windows" ]; then
-            BINARY_NAME="toolbox.exe"
-          fi
+          BINARY_NAME="toolbox${BINARY_SUFFIX}"
           
-          DOWNLOAD_URL="https://storage.googleapis.com/genai-toolbox/v${VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
+          DOWNLOAD_URL="${GCS_BUCKET_URL}/v${TOOLBOX_VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
           
           echo "Downloading binary from: ${DOWNLOAD_URL}"
           curl -L --fail -o "${BINARY_NAME}" "${DOWNLOAD_URL}"
@@ -71,37 +68,18 @@ jobs:
 
       - name: Create release archive
         id: create_archive
-        shell: bash
-        env:
-          VERSION: ${{ steps.get_toolbox_version.outputs.TOOLBOX_VERSION }}
-          OS_NAME: ${{ matrix.platform.os }}
-          ARCH_NAME: ${{ matrix.platform.arch }}
         run: |
-          echo "Packaging toolbox version ${VERSION} on ${OS_NAME}-${ARCH_NAME}"
-          ARCHIVE_EXTENSION="tar.gz"
-          SOURCE_BIN_SUFFIX=""
-          TARGET_BIN_SUFFIX=""
-          
-          if [ "$OS_NAME" == "windows" ]; then
-            ARCHIVE_EXTENSION="zip"
-            SOURCE_BIN_SUFFIX=".exe"
-            TARGET_BIN_SUFFIX=".exe"
-          fi
-          ARCHIVE_NAME="${PACKAGE_NAME}-${OS_NAME}-${ARCH_NAME}.${ARCHIVE_EXTENSION}"
+          ARCHIVE_NAME="${PACKAGE_NAME}-${{ matrix.platform.os }}-${{ matrix.platform.arch }}.${{ matrix.platform.archive_extension }}"
+          SOURCE_BINARY="toolbox${{ matrix.platform.binary_suffix }}"
+          TARGET_BINARY="toolbox${{ matrix.platform.binary_suffix }}"
 
-          SOURCE_BINARY="toolbox${SOURCE_BIN_SUFFIX}"
-          TARGET_BINARY="toolbox${TARGET_BIN_SUFFIX}"
-
-          if [ ! -f "$SOURCE_BINARY" ]; then
-            echo "Error: Downloaded source binary '${SOURCE_BINARY}' not found!"
-            exit 1
-          fi
+          echo "Packaging ${SOURCE_BINARY} into ${ARCHIVE_NAME}"
 
           mkdir staging
           cp "${SOURCE_BINARY}" "staging/${TARGET_BINARY}"
           cp ${FILES_TO_PACKAGE} staging/
 
-          if [ "$OS_NAME" == "windows" ]; then
+          if [[ "${{ matrix.platform.os }}" == "windows" ]]; then
             (cd staging && zip ../${ARCHIVE_NAME} *)
           else
             tar -czvf "${ARCHIVE_NAME}" -C staging .
@@ -127,10 +105,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download all archives from workflow artifact
+      - name: Download all archives from workflow artifacts
         uses: actions/download-artifact@v4
         with:
           path: release-archives
+
+      - name: List downloaded files
+        run: |
+          echo "--- Downloaded files ---"
+          ls -R release-archives
+          echo "------------------------"
 
       - name: Upload all assets to GitHub Release
         env:
