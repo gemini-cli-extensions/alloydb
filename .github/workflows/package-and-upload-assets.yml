@@ -57,8 +57,12 @@ jobs:
           BINARY_SUFFIX: ${{ matrix.platform.binary_suffix }}
         run: |
           BINARY_NAME="toolbox${BINARY_SUFFIX}"
-          
-          DOWNLOAD_URL="${GCS_BUCKET_URL}/v${TOOLBOX_VERSION}/${OS_NAME}/${ARCH_NAME}/${BINARY_NAME}"
+          DOWNLOAD_ARCH_NAME="${ARCH_NAME}"
+          if [[ "${ARCH_NAME}" == "x64" ]]; then
+            echo "Mapping architecture 'x64' to 'amd64' for GCS download."
+            DOWNLOAD_ARCH_NAME="amd64"
+          fi
+          DOWNLOAD_URL="${GCS_BUCKET_URL}/v${TOOLBOX_VERSION}/${OS_NAME}/${DOWNLOAD_ARCH_NAME}/${BINARY_NAME}"
           
           echo "Downloading binary from: ${DOWNLOAD_URL}"
           curl -L --fail -o "${BINARY_NAME}" "${DOWNLOAD_URL}"
