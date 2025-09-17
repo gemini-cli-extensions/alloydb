@@ -27,8 +27,8 @@ branchProtectionRules:
   isAdminEnforced: true
   requiredStatusCheckContexts:
     - 'cla/google'
-    - "conventionalcommits.org"
-    - "header-check"
+    - 'conventionalcommits.org'
+    - 'header-check'
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
   requiresStrictStatusChecks: true
