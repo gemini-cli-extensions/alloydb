@@ -25,7 +25,7 @@ Before you begin, ensure you have the following:
 ## Installation
 
 ```bash
-gemini extensions install github.com/gemini-cli-extensions/alloydb.git
+gemini extensions install github.com/gemini-cli-extensions/alloydb
 ```
 
 ## Configuration
@@ -41,9 +41,8 @@ Set the following environment variables before starting the Gemini CLI:
 *   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user.
 *   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC` or `PRIVATE`). Defaults to `PUBLIC`.
 
-### Private IP
-
-When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
+> [!NOTE]
+> When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
 
 ## Usage Examples
 
