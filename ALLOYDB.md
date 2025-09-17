@@ -31,9 +31,7 @@ This section covers connecting to an AlloyDB database instance.
 
 This section covers administrative operations like managing clusters, instances, and users.
 
-1.  **Verify API Key**: For administrative commands, ensure the `API_KEY` environment variable is set. This key is required for authenticating with the AlloyDB Admin API.
-
-2.  **Handle Permission Errors**:
+1.  **Handle Permission Errors**:
     *   For operations that create, get, list, delete, or update resources, the user needs the **AlloyDB Admin** (`roles/alloydb.admin`) role.
     *   For read-only operations (get/list), the **AlloyDB Viewer** (`roles/alloydb.viewer`) role is sufficient.
     *   If an operation fails due to permissions, identify the type of operation and recommend the appropriate role. You can provide these links for assistance:
