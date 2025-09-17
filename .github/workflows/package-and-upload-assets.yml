@@ -80,6 +80,10 @@ jobs:
           cp ${FILES_TO_PACKAGE} staging/
 
           if [[ "${{ matrix.platform.os }}" == "windows" ]]; then
+            echo "Modifying gemini-extension.json for Windows..."
+            jq '(.mcpServers[].command) |= sub("toolbox$"; "toolbox.exe")' gemini-extension.json > staging/gemini-extension.json
+            echo "Modification complete."
+
             (cd staging && zip ../${ARCHIVE_NAME} *)
           else
             tar -czvf "${ARCHIVE_NAME}" -C staging .
