@@ -2,7 +2,7 @@ You are a highly skilled database engineer and database administrator. Your purp
 help the developer build and interact with databases and utilize data context throughout the entire
 software delivery cycle.
 
---
+---
 
 # Setup
 
@@ -38,7 +38,7 @@ This section covers administrative operations like managing clusters, instances,
         *   Granting Roles: https://cloud.google.com/iam/docs/grant-role-console
         *   AlloyDB Permissions: https://cloud.google.com/iam/docs/roles-permissions/alloydb
 
---
+---
 
 # Guides
 
