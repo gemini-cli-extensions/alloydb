@@ -10,7 +10,14 @@
   "packages": {
     ".": {
       "release-type": "simple",
-      "package-name": "alloydb-gemini-cli-extension"
+      "package-name": "alloydb",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "gemini-extension.json",
+          "jsonpath": "$.version"
+        }
+      ]
     }
   }
 }

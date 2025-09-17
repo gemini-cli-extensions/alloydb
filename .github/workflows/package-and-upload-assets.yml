@@ -16,7 +16,7 @@ name: Package and Upload Release Assets
 
 # Global variables
 env:
-  PACKAGE_NAME: "alloydb-gemini-cli-extension"
+  PACKAGE_NAME: "alloydb"
   FILES_TO_PACKAGE: "gemini-extension.json ALLOYDB.md LICENSE"
   GCS_BUCKET_URL: "https://storage.googleapis.com/genai-toolbox"
 
@@ -32,10 +32,10 @@ jobs:
     strategy:
       matrix:
         platform:
-          - { os: "linux",   arch: "amd64", binary_suffix: "",    archive_extension: "tar.gz" }
+          - { os: "linux",   arch: "x64", binary_suffix: "",    archive_extension: "tar.gz" }
           - { os: "darwin",  arch: "arm64", binary_suffix: "",    archive_extension: "tar.gz" }
-          - { os: "darwin",  arch: "amd64", binary_suffix: "",    archive_extension: "tar.gz" }
-          - { os: "windows", arch: "amd64", binary_suffix: ".exe",  archive_extension: "zip"    }
+          - { os: "darwin",  arch: "x64", binary_suffix: "",    archive_extension: "tar.gz" }
+          - { os: "windows", arch: "x64", binary_suffix: ".exe",  archive_extension: "zip"    }
     steps:
       - name: Checkout code at the new tag
         uses: actions/checkout@v4
@@ -69,7 +69,7 @@ jobs:
       - name: Create release archive
         id: create_archive
         run: |
-          ARCHIVE_NAME="${PACKAGE_NAME}-${{ matrix.platform.os }}-${{ matrix.platform.arch }}.${{ matrix.platform.archive_extension }}"
+          ARCHIVE_NAME="${{ matrix.platform.os }}.${{ matrix.platform.arch }}.${PACKAGE_NAME}.${{ matrix.platform.archive_extension }}"
           SOURCE_BINARY="toolbox${{ matrix.platform.binary_suffix }}"
           TARGET_BINARY="toolbox${{ matrix.platform.binary_suffix }}"
 
@@ -92,7 +92,7 @@ jobs:
       - name: Upload archive as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: toolbox-${{ matrix.platform.os }}-${{ matrix.platform.arch }}
+          name: ${{ matrix.platform.os }}.${{ matrix.platform.arch }}.${PACKAGE_NAME}.${{ matrix.platform.archive_extension }}
           path: ${{ steps.create_archive.outputs.ARCHIVE_PATH }}
 
   upload:
