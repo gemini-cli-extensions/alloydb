@@ -1,6 +1,6 @@
 {
   "name": "alloydb",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
   "mcpServers": {
     "AlloyDB Admin": {
