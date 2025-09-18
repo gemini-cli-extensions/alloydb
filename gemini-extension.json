@@ -1,6 +1,4 @@
 {
-  "name": "AlloyDB for PostgreSQL",
-  "version": "0.0.0",
   "name": "alloydb",
   "version": "0.0.0",
   "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
