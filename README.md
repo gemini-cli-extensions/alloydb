@@ -1,5 +1,8 @@
 # Gemini CLI Extension - AlloyDB for PostgreSQL
 
+> [!NOTE]
+> This extension is currently in beta, and may see breaking changes until the first stable release (v1.0).
+
 Instantly manage and query your [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) databases using the power of natural language, directly from your command line. Go from an idea to a running cluster and queryable data in minutes, without ever leaving your terminal.
 
 Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extension.md).
@@ -10,9 +13,6 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 *   **Seamless Workflow:** Stay in your CLI. No need to constantly switch contexts to the GCP console for common database tasks.
 *   **Full Lifecycle Control:** Manage the entire lifecycle of your database, from creating clusters and instances to exploring schemas and running queries.
 *   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
-
-> [!NOTE]
-> This extension is currently in beta, and may see breaking changes until the first stable release (v1.0).
 
 ## Prerequisites
 
