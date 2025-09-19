@@ -25,9 +25,6 @@ mergeCommitAllowed: false
 branchProtectionRules:
 - pattern: main
   isAdminEnforced: true
-  requiredStatusCheckContexts:
-    - 'cla/google'
-  # - Add required status checks like presubmit tests
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
   requiresStrictStatusChecks: true
