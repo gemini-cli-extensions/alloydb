@@ -11,11 +11,14 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 *   **Full Lifecycle Control:** Manage the entire lifecycle of your database, from creating clusters and instances to exploring schemas and running queries.
 *   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
 
+> [!NOTE]
+> This extension is pre-v1.0 and may see breaking changes until the first stable release.
+
 ## Prerequisites
 
 Before you begin, ensure you have the following:
 
-*   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed.
+*   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version +v0.6.0.
 *   A Google Cloud project with the **AlloyDB Admin API** enabled.
 *   IAM Permissions:
     *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
@@ -40,6 +43,8 @@ Set the following environment variables before starting the Gemini CLI:
 *   `ALLOYDB_POSTGRES_USER`: (Optional) The database username.
 *   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user.
 *   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC` or `PRIVATE`). Defaults to `PUBLIC`.
+
+Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment. 
 
 > [!NOTE]
 > When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
