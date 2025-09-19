@@ -12,7 +12,7 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 *   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
 
 > [!NOTE]
-> This extension is pre-v1.0 and may see breaking changes until the first stable release.
+> This extension is currently in beta, and may see breaking changes until the first stable release (v1.0).
 
 ## Prerequisites
 
