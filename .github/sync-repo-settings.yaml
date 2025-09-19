@@ -25,10 +25,6 @@ mergeCommitAllowed: false
 branchProtectionRules:
 - pattern: main
   isAdminEnforced: true
-  requiredStatusCheckContexts:
-    - 'cla/google'
-    - 'conventionalcommits.org'
-    - 'header-check'
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
   requiresStrictStatusChecks: true
