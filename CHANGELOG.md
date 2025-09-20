@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (2025-09-19)
+## [0.1.0](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.0...0.1.0) (2025-09-20)
 
 
 ### Features
