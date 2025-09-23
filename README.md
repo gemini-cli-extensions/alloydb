@@ -33,7 +33,8 @@ gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 
 ## Configuration
 
-Set the following environment variables before starting the Gemini CLI:
+Set the following environment variables before starting the Gemini CLI.
+This configuration is not required if utilizing the [Admin toolset](#supported-tools).
 
 *   `ALLOYDB_POSTGRES_PROJECT`: The GCP project ID.
 *   `ALLOYDB_POSTGRES_REGION`: The region of the AlloyDB instance (e.g., `us-central1`).
