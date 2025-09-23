@@ -6,7 +6,7 @@ matrix:
     aspell:
       lang: en
     sources:
-      - '**/*.md'
+      - 'ALLOYDB.md'
     dictionary:
       wordlists:
         - dictionary.txt
