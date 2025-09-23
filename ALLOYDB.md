@@ -46,9 +46,4 @@ This section covers administrative operations like managing clusters, instances,
 
 *  **Provide Admin Guides**:
     *   For questions about database user management, provide this link: https://cloud.google.com/alloydb/docs/database-users/overview
-    *   For questions about viewing cluster and instance settings, provide this
-        link:
-        https://cloud.google.com/alloydb/docs/cluster-settings?resource=primary
-
-
-# test change
+    *   For questions about viewing cluster and instance settings, provide this link: https://cloud.google.com/alloydb/docs/cluster-settings?resource=primary
