@@ -4,7 +4,6 @@ software delivery cycle.
 
 ---
 
-######## test change
 
 # Setup
 
