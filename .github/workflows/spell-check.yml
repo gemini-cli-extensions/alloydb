@@ -3,8 +3,7 @@ name: Spell Check Specific Markdown Files
 on:
   pull_request:
     paths:
-      - 'ALLOYDB.md'
-      - 'README.md'
+      - '**.md'
 
 jobs:
   spell-check:
