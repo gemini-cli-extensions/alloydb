@@ -1,0 +1,13 @@
+# This is the configuration file for pyspelling
+# The rojopolis/spellcheck-github-actions action will read this file
+
+matrix:
+  - name: markdown
+    aspell:
+      lang: en
+    sources:
+      - '**/*.md'
+    dictionary:
+      wordlists:
+        - .github/dictionary.txt
+      encoding: utf-8
