@@ -1,0 +1,5 @@
+AlloyDB
+PostgreSQL
+stdio
+prebuilt
+mcpServers

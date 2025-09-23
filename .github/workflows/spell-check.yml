@@ -1,0 +1,23 @@
+name: Spell Check Specific Markdown Files
+
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'docs/guide.md'
+
+jobs:
+  spell-check:
+    name: Run spell checker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Check spelling
+        uses: rojopolis/spellcheck-github-actions@v0
+        with:
+          source_files: |
+            README.md
+            docs/guide.md
+          custom_dictionary: '.github/spellcheck-dict.txt'
