@@ -18,7 +18,7 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 
 Before you begin, ensure you have the following:
 
-*   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version +v0.6.0.
+*   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
 *   A Google Cloud project with the **AlloyDB Admin API** enabled.
 *   IAM Permissions:
     *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
@@ -28,12 +28,13 @@ Before you begin, ensure you have the following:
 ## Installation
 
 ```bash
-gemini extensions install github.com/gemini-cli-extensions/alloydb
+gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 ```
 
 ## Configuration
 
-Set the following environment variables before starting the Gemini CLI:
+Set the following environment variables before starting the Gemini CLI.
+This configuration is not required if utilizing the [Admin toolset](#supported-tools).
 
 *   `ALLOYDB_POSTGRES_PROJECT`: The GCP project ID.
 *   `ALLOYDB_POSTGRES_REGION`: The region of the AlloyDB instance (e.g., `us-central1`).
