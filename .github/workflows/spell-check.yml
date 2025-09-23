@@ -2,6 +2,7 @@ name: Spell Check Specific Markdown Files
 
 on:
   pull_request:
+    branches: [ main ]
     paths:
       - '**.md'
 
