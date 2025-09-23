@@ -40,4 +40,5 @@ jobs:
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1
         with:
+          # There is no security token. So, it would fail on any links which aren't public.
           args: "--verbose --no-progress ALLOYDB.md"
