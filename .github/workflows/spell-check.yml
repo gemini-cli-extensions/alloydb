@@ -3,21 +3,26 @@ name: Spell Check Specific Markdown Files
 on:
   pull_request:
     paths:
+      - 'ALLOYDB.md'
       - 'README.md'
-      - 'docs/guide.md'
 
 jobs:
   spell-check:
     name: Run spell checker
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Check spelling
-        uses: rojopolis/spellcheck-github-actions@v0
+       - name: Get all changed markdown files
+        uses: tj-actions/changed-files@v45
+        id: changed_files
         with:
-          source_files: |
-            README.md
-            docs/guide.md
-          custom_dictionary: '.github/spellcheck-dict.txt'
+            files: **.md
+
+       - name: Run Spellcheck
+        id: spellcheck
+        uses: rojopolis/spellcheck-github-actions@v0
+        dictionary:
+            wordlists:
+                .github/workflows/spellcheck-dict.txt
+        with:
+            task_name: Markdown
+            source_files: ${{ steps.changed_files.outputs.all_changed_files }}
