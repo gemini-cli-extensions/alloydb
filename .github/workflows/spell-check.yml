@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Spell Check
-
 on:
   pull_request:
     branches: [ main ]
@@ -28,5 +26,5 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Markdown file
+      - name: Markdown spell check
         uses: rojopolis/spellcheck-github-actions@v0
