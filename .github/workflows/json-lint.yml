@@ -1,0 +1,15 @@
+name: Lint JSON
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  json-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run JSON Lint
+        run: jq . alloydb.json
