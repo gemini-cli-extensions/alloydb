@@ -1,5 +1,16 @@
 AlloyDB
+alloydb
 PostgreSQL
+POSTGRES
 stdio
 prebuilt
 mcpServers
+CLI
+Embeddings
+GCP
+IAM
+iam
+MCP
+ai
+embeddings
+https
