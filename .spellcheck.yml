@@ -9,5 +9,5 @@ matrix:
       - '**/*.md'
     dictionary:
       wordlists:
-        - .github/dictionary.txt
+        - dictionary.txt
       encoding: utf-8
