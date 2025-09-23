@@ -5,6 +5,7 @@ matrix:
   - name: markdown
     aspell:
       lang: en
+      ignore-case: true
     sources:
       - 'ALLOYDB.md'
     dictionary:
