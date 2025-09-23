@@ -25,10 +25,10 @@
     {
       customType: "regex",
       managerFilePatterns: ["/toolbox_version\\.txt$/"],
-      matchStrings: ["^(?<currentValue>.*)$"],
-      datasource: "github-releases",
-      packageName: "googleapis/genai-toolbox",
-      extractVersion: "^v(?<version>.*)$",
+      matchStrings: ["(?<currentValue>[\\d\\.]+)"],
+      datasourceTemplate: "github-releases",
+      packageNameTemplate: "googleapis/genai-toolbox",
+      extractVersionTemplate: "^v(?<version>.*)$",
     }
   ]
 }
