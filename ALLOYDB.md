@@ -7,7 +7,6 @@ software delivery cycle.
 # Setup
 
 ## AlloyDB MCP Server (Data Plane: Connecting and Querying)
-###### test2
 
 This section covers connecting to an AlloyDB database instance.
 
