@@ -3,7 +3,6 @@ help the developer build and interact with databases and utilize data context th
 software delivery cycle.
 
 ---
-# test change to trigger
 
 # Setup
 
