@@ -11,13 +11,13 @@ jobs:
     name: Run spell checker
     runs-on: ubuntu-latest
     steps:
-       - name: Get all changed markdown files
+      - name: Get all changed markdown files
         uses: tj-actions/changed-files@v45
         id: changed_files
         with:
             files: **.md
 
-       - name: Run Spellcheck
+      - name: Run Spellcheck
         id: spellcheck
         uses: rojopolis/spellcheck-github-actions@v0
         dictionary:
