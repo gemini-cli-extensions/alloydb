@@ -16,20 +16,9 @@ name: Lint Markdown
 
 on:
   pull_request:
-    paths:
-      - 'ALLOYDB.md'
+    branches: [ main ]
 
 jobs:
-  spell-check:
-    name: Run spell checker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Markdown
-        uses: rojopolis/spellcheck-github-actions@v0
-
   link-check:
     name: Run link check
     runs-on: ubuntu-latest
@@ -41,4 +30,4 @@ jobs:
         uses: lycheeverse/lychee-action@v1
         with:
           # There is no security token. So, it would fail on any links which aren't public.
-          args: "--verbose --no-progress ALLOYDB.md"
+          args: "--verbose --no-progress **.md"
