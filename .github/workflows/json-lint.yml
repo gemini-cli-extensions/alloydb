@@ -16,8 +16,6 @@ name: Lint JSON
 
 on:
   pull_request:
-    paths:
-      - 'gemini-extension.json'
 
 jobs:
   json-lint:
