@@ -16,6 +16,7 @@ name: Lint JSON
 
 on:
   pull_request:
+    branches: [ main ]
 
 jobs:
   json-lint:
