@@ -16,15 +16,12 @@ name: Lint JSON
 
 on:
   pull_request:
-    paths:
+    paths-ignore:
       - 'gemini-extension.json'
 
 jobs:
   json-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Run JSON Lint
-        run: jq . gemini-extension.json
+      - name: No JSON linting required
+        run: echo "No .json files changed that require linting."
