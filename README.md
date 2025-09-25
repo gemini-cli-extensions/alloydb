@@ -56,6 +56,8 @@ Ensure [Application Default Credentials](https://cloud.google.com/docs/authentic
 
 ### Start Gemini CLI
 
+To start the Gemini CLI, use the following command:
+
 ```bash
 gemini
 ```
@@ -114,7 +116,7 @@ This extension provides a comprehensive set of tools:
 ## Additional Extensions
 
 Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
-* Generic [PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres)
+* [Generic PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres)
 * [AlloyDB Observability extension](https://github.com/gemini-cli-extensions/alloydb-observability)
 * and more!
 
