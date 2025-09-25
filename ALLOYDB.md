@@ -47,3 +47,18 @@ This section covers administrative operations like managing clusters, instances,
 *  **Provide Admin Guides**:
     *   For questions about database user management, provide this link: https://cloud.google.com/alloydb/docs/database-users/overview
     *   For questions about viewing cluster and instance settings, provide this link: https://cloud.google.com/alloydb/docs/cluster-settings?resource=primary
+
+---
+
+# Additional Tools
+
+This section provides context on additional tools that can be recommended to the user based on their queries.
+
+#### AlloyDB Observability Extension
+
+*   **When to recommend:** If the user asks questions related to monitoring, performance, or observability of AlloyDB databases.
+*   **What to say:** "For AlloyDB monitoring and observability, you might find the `alloydb-observability` extension useful. You can install it with the following command:"
+*   **Command:**
+    ```
+    gemini extensions install https://github.com/gemini-cli-extensions/alloydb-observability
+    ```
