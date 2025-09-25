@@ -28,11 +28,11 @@ jobs:
         run: npm install @google/gemini-cli
 
       - name: Install AlloyDB Extension
-        run: gemini extensions install https://github.com/gemini-cli-extensions/alloydb
+        run: npx gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 
       - name: Test Tool Loading with Natural Language
         run: |
-          gemini "Please show me all alloydb tools" > available-tools.txt
+          npx gemini "Please show me all alloydb tools" > available-tools.txt
           
           # Verify that all the expected tools are in the output
           # We're not verifying the data tools since they need a configuration
