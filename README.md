@@ -52,7 +52,7 @@ This configuration is not required if utilizing the [Admin toolset](#supported-t
 Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
 
 > [!NOTE]
-> When using private IPs with AlloyDB, you must run Gemini CLI in your Virtual Private Cloud (VPC) network.
+> If your AlloyDB instance uses private IPs, you must run Gemini CLI in the same Virtual Private Cloud (VPC) network.
 
 ### Start Gemini CLI
 
@@ -60,7 +60,7 @@ Ensure [Application Default Credentials](https://cloud.google.com/docs/authentic
 gemini
 ```
 
-> [!ALERT]
+> [!WARNING]
 > **Changing Instance & Database Connections**
 > Currently, the database connection must be configured before starting the Gemini CLI and can not be changed during a session.
 > To save and resume conversation history use command: `/chat save <tag>` and `/chat resume <tag>`.
