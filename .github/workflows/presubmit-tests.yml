@@ -1,0 +1,51 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+name: Presubmit Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-presubmit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install Gemini CLI
+        run: npm install @google/gemini-cli
+
+      - name: Install AlloyDB Extension
+        run: gemini extensions install https://github.com/gemini-cli-extensions/alloydb
+
+      - name: Test Tool Loading with Natural Language
+        run: |
+          gemini "Please show me all alloydb tools" > available-tools.txt
+          
+          # Verify that all the expected tools are in the output
+          # We're not verifying the data tools since they need a configuration
+          # setup for connecting to AlloyDB.
+          EXPECTED_TOOLS=(
+            "create_cluster" "create_instance" "create_user" "get_cluster" "get_instance" "get_user"
+            "list_clusters" "list_instances" "list_users" "wait_for_operation"
+          )
+
+          for tool in "${EXPECTED_TOOLS[@]}"; do
+            if ! grep -q "$tool" available-tools.txt; then
+              echo "Error: Tool '$tool' not found in the list of available tools."
+              exit 1
+            fi
+          done
+          echo "All expected tools are loaded successfully."
