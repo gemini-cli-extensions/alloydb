@@ -19,19 +19,23 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 Before you begin, ensure you have the following:
 
 *   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
-*   A Google Cloud project with the **AlloyDB Admin API** enabled.
+*   A Google Cloud project with the **AlloyDB API** enabled.
 *   IAM Permissions:
     *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
     *   AlloyDB Client (`roles/alloydb.client`) (for connecting and querying)
     *   Service Usage Consumer (`roles/serviceusage.serviceUsageConsumer`)
 
-## Installation
+## Getting Started
+
+### Installation
+
+To install the extension, use the following command before starting the Gemini CLI:
 
 ```bash
 gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 ```
 
-## Configuration
+### Configuration
 
 Set the following environment variables before starting the Gemini CLI.
 This configuration is not required if utilizing the [Admin toolset](#supported-tools).
@@ -48,7 +52,18 @@ This configuration is not required if utilizing the [Admin toolset](#supported-t
 Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
 
 > [!NOTE]
-> When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
+> When using private IPs with AlloyDB, you must run Gemini CLI in your Virtual Private Cloud (VPC) network.
+
+### Start Gemini CLI
+
+```bash
+gemini
+```
+
+> [!ALERT]
+> **Changing Instance & Database Connections**
+> Currently, the database connection must be configured before starting the Gemini CLI and can not be changed during a session.
+> To save and resume conversation history use command: `/chat save <tag>` and `/chat resume <tag>`.
 
 ## Usage Examples
 
