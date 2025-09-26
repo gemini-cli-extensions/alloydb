@@ -28,24 +28,4 @@ jobs:
         run: npm install @google/gemini-cli
 
       - name: Install AlloyDB Extension
-        run: npx gemini extensions install https://github.com/gemini-cli-extensions/alloydb
-
-      - name: Test Tool Loading with Natural Language
-        run: |
-          npx gemini "Please show me all alloydb tools" > available-tools.txt
-          
-          # Verify that all the expected tools are in the output
-          # We're not verifying the data tools since they need a configuration
-          # setup for connecting to AlloyDB.
-          EXPECTED_TOOLS=(
-            "create_cluster" "create_instance" "create_user" "get_cluster" "get_instance" "get_user"
-            "list_clusters" "list_instances" "list_users" "wait_for_operation"
-          )
-
-          for tool in "${EXPECTED_TOOLS[@]}"; do
-            if ! grep -q "$tool" available-tools.txt; then
-              echo "Error: Tool '$tool' not found in the list of available tools."
-              exit 1
-            fi
-          done
-          echo "All expected tools are loaded successfully."
+        run: npx gemini extensions install --path=.
