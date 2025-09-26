@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
   "mcpServers": {
-    "AlloyDB Admin": {
+    "alloydb-admin": {
       "command": "${extensionPath}${/}toolbox",
       "args": [
         "--prebuilt",
@@ -11,7 +11,7 @@
         "--stdio"
       ]
     },
-    "AlloyDB": {
+    "alloydb": {
       "command": "${extensionPath}${/}toolbox",
       "args": [
         "--prebuilt",
