@@ -19,19 +19,23 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 Before you begin, ensure you have the following:
 
 *   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
-*   A Google Cloud project with the **AlloyDB Admin API** enabled.
+*   A Google Cloud project with the **AlloyDB API** enabled.
 *   IAM Permissions:
     *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
     *   AlloyDB Client (`roles/alloydb.client`) (for connecting and querying)
     *   Service Usage Consumer (`roles/serviceusage.serviceUsageConsumer`)
 
-## Installation
+## Getting Started
+
+### Installation
+
+To install the extension, use the following command before starting the Gemini CLI:
 
 ```bash
 gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 ```
 
-## Configuration
+### Configuration
 
 Set the following environment variables before starting the Gemini CLI.
 This configuration is not required if utilizing the [Admin toolset](#supported-tools).
@@ -48,7 +52,20 @@ This configuration is not required if utilizing the [Admin toolset](#supported-t
 Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
 
 > [!NOTE]
-> When using private IPs with AlloyDB, you must use a Virtual Private Cloud (VPC) network.
+> If your AlloyDB instance uses private IPs, you must run Gemini CLI in the same Virtual Private Cloud (VPC) network.
+
+### Start Gemini CLI
+
+To start the Gemini CLI, use the following command:
+
+```bash
+gemini
+```
+
+> [!WARNING]
+> **Changing Instance & Database Connections**
+> Currently, the database connection must be configured before starting the Gemini CLI and can not be changed during a session.
+> To save and resume conversation history use command: `/chat save <tag>` and `/chat resume <tag>`.
 
 ## Usage Examples
 
@@ -98,8 +115,13 @@ This extension provides a comprehensive set of tools:
 
 ## Additional Extensions
 
-Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including a generic [PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres).
+Find additional extensions to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
+* [Generic PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres)
+* [AlloyDB Observability extension](https://github.com/gemini-cli-extensions/alloydb-observability)
+* and more!
 
 ## Troubleshooting
 
-* "cannot execute binary file": Ensure the correct binary for your OS/Architecture has been downloaded. See [Installing the server](https://googleapis.github.io/genai-toolbox/getting-started/introduction/#installing-the-server) for more information.
+* "✖ Error during discovery for server: MCP error -32000: Connection closed": The database connection has not been established. Ensure your configuration is set via environment variables.
+* "✖ MCP ERROR: Error: spawn /Users/<USER>/.gemini/extensions/alloydb/toolbox ENOENT": The Toolbox binary did not download correctly. Ensure you are using Gemini CLI v0.6.0+.
+* "cannot execute binary file": The Toolbox binary did not download correctly. Ensure the correct binary for your OS/Architecture has been downloaded. See [Installing the server](https://googleapis.github.io/genai-toolbox/getting-started/introduction/#installing-the-server) for more information.
