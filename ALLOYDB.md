@@ -95,3 +95,9 @@ Users may have set project environment variables:
 
 Instead of prompting the user for these values for specific tool calls, prompt the user to verify reuse a specific value.
 Make sure to not use the environment variable name like `ALLOYDB_POSTGRES_PROJECT`, `${ALLOYDB_POSTGRES_PROJECT}`, or `$ALLOYDB_POSTGRES_PROJECT`. The value can be found by using command: `echo $ALLOYDB_POSTGRES_PROJECT`.
+
+## Use Full Table Name Format "DATABASE_NAME.SCHEMA_NAME.TABLE_NAME"
+
+**ALWAYS** use the full table name format, `DATABASE_NAME.SCHEMA_NAME.TABLE_NAME` in the generated SQL when using the `execute_sql` or `alloydb__execute_sql` tool.
+* Default to using "public" for the schema name.
+* Use command `echo $ALLOYDB_POSTGRES_DATABASE` to get the current database value.
