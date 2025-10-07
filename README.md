@@ -5,7 +5,7 @@
 
 Instantly manage and query your [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) databases using the power of natural language, directly from your command line. Go from an idea to a running cluster and queryable data in minutes, without ever leaving your terminal.
 
-Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extension.md).
+Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extensions/index.md).
 
 ## Why Use the AlloyDB Extension?
 
