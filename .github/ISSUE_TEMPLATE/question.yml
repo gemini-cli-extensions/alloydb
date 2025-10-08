@@ -38,7 +38,6 @@ body:
     attributes:
       label: Question
       description: "What's your question? Please provide as much relevant information as possible to reduce turnaround time. Include information like what environment, language, or framework you are using."
-      placeholder: "Example: How do I connect using private IP with the AlloyDB source?"
     validations:
       required: true
 
