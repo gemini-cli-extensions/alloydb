@@ -17,11 +17,6 @@ name: 'License Header Check'
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - '**/*.yaml'
-      - '**/*.yml'
-      - '.licenserc.yaml'
-      - '.github/workflows/header-check.yml'
 
 jobs:
   license-check:
