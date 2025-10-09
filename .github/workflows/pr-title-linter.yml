@@ -1,0 +1,13 @@
+name: PR Title Linter
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+jobs:
+  lint-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint PR Title
+        uses: JulienKode/pull-request-linter-action@v1.6.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: ".github/pr-linter-config.json"
