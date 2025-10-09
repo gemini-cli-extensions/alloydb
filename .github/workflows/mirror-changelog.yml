@@ -21,7 +21,7 @@ on:
 jobs:
   add-release-notes:
     # Run only for Renovate's genai-toolbox PRs
-    if: github.actor == 'renovate[bot]' && startsWith(github.head_ref, 'renovate/googleapis-genai-toolbox')
+    # if: github.actor == 'renovate[bot]' && startsWith(github.head_ref, 'renovate/googleapis-genai-toolbox')
     runs-on: ubuntu-latest
     
     permissions:
