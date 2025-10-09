@@ -1,0 +1,21 @@
+name: 'License Header Check'
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '.licenserc.yaml'
+      - '.github/workflows/header-check.yml'
+
+jobs:
+  license-check:
+    name: 'License Header Check'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: 'Run License Eye Header Check'
+        uses: license-eye/license-eye-header@main
