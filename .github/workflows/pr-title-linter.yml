@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Lint PR Title
-        uses: JulienKode/pull-request-linter-action@v1.6.0
+        uses: JulienKode/pull-request-linter-action@v20.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           config-path: ".github/pr-linter-config.json"
