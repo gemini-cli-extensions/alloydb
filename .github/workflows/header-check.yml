@@ -17,5 +17,5 @@ jobs:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
 
-      - name: 'Run License Eye Header Check'
-        uses: license-eye/license-eye-header@main
+      - name: Check License Header
+        uses: apache/skywalking-eyes/header@main  
