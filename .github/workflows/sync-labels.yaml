@@ -12,24 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+name: Sync Labels
+on:
+  push:
+    branches:
+      - main
 
-# Synchronize repository settings from a centralized config
-# https://github.com/googleapis/repo-automation-bots/tree/main/packages/sync-repo-settings
-# Install: https://github.com/apps/sync-repo-settings
+# Declare default permissions as read only.
+permissions: read-all
 
-# Disable merge commits
-rebaseMergeAllowed: true
-squashMergeAllowed: true
-mergeCommitAllowed: false
-# Enable branch protection
-branchProtectionRules:
-- pattern: main
-  isAdminEnforced: true
-  requiredApprovingReviewCount: 1
-  requiresCodeOwnerReviews: true
-  requiresStrictStatusChecks: true
-
-# Set team access
-permissionRules:
-  - team: senseai-eco
-    permission: admin
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      issues: 'write'
+      pull-requests: 'write'
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: micnncim/action-label-syncer@3abd5ab72fda571e69fffd97bd4e0033dd5f495c # v1.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          manifest: .github/labels.yaml
