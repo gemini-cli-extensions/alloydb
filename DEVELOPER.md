@@ -33,11 +33,15 @@ The core logic for this extension is handled by a pre-built `toolbox` binary. Th
     # Read the required version
     VERSION=$(cat toolbox_version.txt)
 
-    # Example for macOS/amd64
+    # Download the binary for your platform. The binary must be named `toolbox`.
+    # Adjust the URL for your operating system (`linux/amd64`, `darwin/arm64`, `windows/amd64`).
+    # Example for macOS/amd64:
     curl -L -o toolbox https://storage.googleapis.com/genai-toolbox/v$VERSION/darwin/amd64/toolbox
     chmod +x toolbox
+
+    # For Windows, you will need to download the .exe file and rename it to `toolbox`.
+    # The `chmod` command is not required on Windows.
     ```
-    Adjust the URL for your operating system (`linux/amd64`, `darwin/arm64`, `windows/amd64`).
 
 3.  **Install the Extension Locally:** Use the Gemini CLI to install the
     extension from your local directory.
