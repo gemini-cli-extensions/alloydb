@@ -11,7 +11,8 @@ Before you begin, ensure you have the following:
     instructions can be found on the official Gemini CLI documentation. You can
     verify your version by running `gemini --version`.
 2.  **AlloyDB Cluster & Instance:** For testing data plane tools, you will need access to an active AlloyDB
-    for PostgreSQL instance.
+    for PostgreSQL instance. We recommend using Public IP to eliminate the need to create and use a workspace
+    within the same VPC network as the database. 
 
 ## Developing the Extension
 
