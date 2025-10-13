@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.1...0.1.2) (2025-10-13)
+
+
+### Features
+
+* **deps:** update dependency googleapis/genai-toolbox to v0.17.0 to Support PSC connection ([#66](https://github.com/gemini-cli-extensions/alloydb/issues/66)) ([1280920](https://github.com/gemini-cli-extensions/alloydb/commit/12809204b2e1053bc8e1a101879580b2857d50f6))
+
 ## [0.1.1](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.0...0.1.1) (2025-09-30)
 
 
