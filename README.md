@@ -47,7 +47,7 @@ This configuration is not required if utilizing the [Admin toolset](#supported-t
 *   `ALLOYDB_POSTGRES_DATABASE`: The name of the database.
 *   `ALLOYDB_POSTGRES_USER`: (Optional) The database username.
 *   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user.
-*   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC` or `PRIVATE`). Defaults to `PUBLIC`.
+*   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC`, `PRIVATE`, `PSC`). Defaults to `PUBLIC`.
 
 Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
 
