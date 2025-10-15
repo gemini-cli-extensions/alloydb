@@ -50,14 +50,14 @@ Set the following environment variables before starting the Gemini CLI. These va
 This configuration is not required if utilizing the [Admin toolset](#supported-tools).
 
 ```
-export ALLOYDB_POSTGRES_PROJECT="The GCP project ID."
-export ALLOYDB_POSTGRES_REGION="The region of the AlloyDB instance."  # (e.g. `us-central1`)
-export ALLOYDB_POSTGRES_CLUSTER="The ID of the AlloyDB cluster."
-export ALLOYDB_POSTGRES_INSTANCE="The ID of the AlloyDB instance."
-export ALLOYDB_POSTGRES_DATABASE="The name of the database."
-export ALLOYDB_POSTGRES_USER="The database username."  # (Optional) 
-export ALLOYDB_POSTGRES_PASSWORD="The password for the database user."  # (Optional) 
-export ALLOYDB_POSTGRES_IP_TYPE="The IP Type."  # (Optional) `PUBLIC`, `PRIVATE`, `PSC`. Defaults to `PUBLIC`.
+export ALLOYDB_POSTGRES_PROJECT="<your-gcp-project-id>"
+export ALLOYDB_POSTGRES_REGION="<your-alloydb-region>"  # e.g. `us-central1`
+export ALLOYDB_POSTGRES_CLUSTER="<your-alloydb-cluster-id>"
+export ALLOYDB_POSTGRES_INSTANCE="<your-alloydb-instance-id>"
+export ALLOYDB_POSTGRES_DATABASE="<your-database-name>"
+export ALLOYDB_POSTGRES_USER="<your-database-user>"  # Optional
+export ALLOYDB_POSTGRES_PASSWORD="<your-database-password>"  # Optional
+export ALLOYDB_POSTGRES_IP_TYPE="PUBLIC"  # Optional: `PUBLIC`, `PRIVATE`, `PSC`. Defaults to `PUBLIC`.
 ```
 
 > [!NOTE]
