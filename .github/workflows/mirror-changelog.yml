@@ -58,7 +58,7 @@ jobs:
             const newChangelog = [];
             let currentType = 'feat';
 
-            // --- New filtering configuration ---
+            // --- Filtering configuration ---
             const prefixesToFilter = ['source/', 'sources/', 'tool/', 'tools/'];
             const requiredKeyword = 'alloydb';
             // ------------------------------------
@@ -89,7 +89,7 @@ jobs:
 
                 if (!shouldInclude) {
                   console.log(`Filtering out: ${cleanLine}`);
-                  continue; // Skip to the next line
+                  continue;
                 }
                 newChangelog.push(`${currentType}(toolbox): ${cleanLine}`);
               }
