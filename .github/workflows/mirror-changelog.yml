@@ -33,7 +33,8 @@ jobs:
           script: |
             const prBody = context.payload.pull_request.body;
 
-            // Idempotency Check
+            // Idempotency Check: 
+            // TODO: Fix this. For eg. change from 0.16.0 to 0.17.0 does not merge. Then 0.16.0 to 0.17.0 needs to have a separate changelog.
             if (prBody.includes('BEGIN_COMMIT_OVERRIDE')) {
               console.log('PR body already contains commit override block. Skipping.');
               return;
