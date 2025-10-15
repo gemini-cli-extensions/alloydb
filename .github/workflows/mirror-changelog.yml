@@ -20,7 +20,7 @@ on:
 
 jobs:
   add-release-notes:
-    if: github.actor == 'twishabansal' && startsWith(github.head_ref, 'test: test PR')
+    if: github.actor == 'twishabansal' && startsWith(github.head_ref, 'twishabansal-patch')
 
     runs-on: ubuntu-latest
     
