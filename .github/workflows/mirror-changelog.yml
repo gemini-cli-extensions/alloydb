@@ -1,0 +1,104 @@
+name: Enrich Toolbox Dependency PRs
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  add-release-notes:
+    # Run only for Renovate's genai-toolbox PRs
+    if: github.actor == 'renovate[bot]' && startsWith(github.head_ref, 'renovate/googleapis-genai-toolbox')
+    runs-on: ubuntu-latest
+    
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Add Toolbox Release Notes to PR Body
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prBody = context.payload.pull_request.body;
+
+            // 1. Idempotency Check
+            if (prBody.includes('BEGIN_COMMIT_OVERRIDE')) {
+              console.log('PR body already contains commit override block. Skipping.');
+              return;
+            }
+
+            // 2. Extract the relevant changelog section
+            const startMarker = '<summary>googleapis/genai-toolbox';
+            const endMarker = '</details>';
+            const startIndex = prBody.indexOf(startMarker);
+            const endIndex = prBody.indexOf(endMarker, startIndex);
+
+            if (startIndex === -1 || endIndex === -1) {
+              console.log('Could not find the release notes section in the PR body. Exiting.');
+              return;
+            }
+
+            const releaseNotesSection = prBody.substring(startIndex, endIndex);
+
+            // 3. Parse, FILTER, and transform the release notes
+            const lines = releaseNotesSection.split('\n');
+            const newChangelog = [];
+            let currentType = 'feat';
+
+            // --- New filtering configuration ---
+            const prefixesToFilter = ['source/', 'sources/', 'tool/', 'tools/'];
+            const requiredKeyword = 'alloydb';
+            // ------------------------------------
+
+            for (const line of lines) {
+              const trimmedLine = line.trim();
+              
+              if (trimmedLine.startsWith('##### ⚠ BREAKING CHANGES')) {
+                currentType = 'feat!';
+                continue;
+              } else if (trimmedLine.startsWith('##### Features')) {
+                currentType = 'feat';
+                continue;
+              } else if (trimmedLine.startsWith('##### Bug Fixes')) {
+                currentType = 'fix';
+                continue;
+              }
+
+              if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
+                let cleanLine = trimmedLine.substring(2)
+                                           .replace(/\(\[#\d+\]\(.*\)\)\s*\([a-z0-9]+\)$/, '')
+                                           .trim();
+
+                const lineAsLowerCase = cleanLine.toLowerCase();
+                const hasPrefix = prefixesToFilter.some(prefix => lineAsLowerCase.includes(prefix));
+                const hasKeyword = lineAsLowerCase.includes(requiredKeyword);
+                const shouldInclude = !hasPrefix || hasKeyword;
+
+                if (!shouldInclude) {
+                  console.log(`Filtering out: ${cleanLine}`);
+                  continue; // Skip to the next line
+                }
+                newChangelog.push(`${currentType}(toolbox): ${cleanLine}`);
+              }
+            }
+            
+            if (newChangelog.length === 0) {
+              console.log('Found no changelog items to add after filtering. Exiting.');
+              return;
+            }
+
+            // 4. Construct the override block
+            const overrideBlock = [
+              '\n\nBEGIN_COMMIT_OVERRIDE',
+              ...newChangelog,
+              'END_COMMIT_OVERRIDE'
+            ].join('\n');
+
+            // 5. Update the PR body
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body: prBody + overrideBlock,
+            });
+
+            console.log('Successfully added filtered release notes to the PR body.');
