@@ -34,13 +34,13 @@ jobs:
           script: |
             const prBody = context.payload.pull_request.body;
 
-            // 1. Idempotency Check
+            // Idempotency Check
             if (prBody.includes('BEGIN_COMMIT_OVERRIDE')) {
               console.log('PR body already contains commit override block. Skipping.');
               return;
             }
 
-            // 2. Extract the relevant changelog section
+            // Extract the relevant changelog section
             const startMarker = '<summary>googleapis/genai-toolbox';
             const endMarker = '</details>';
             const startIndex = prBody.indexOf(startMarker);
@@ -53,15 +53,14 @@ jobs:
 
             const releaseNotesSection = prBody.substring(startIndex, endIndex);
 
-            // 3. Parse, FILTER, and transform the release notes
+            // Parse, Filter, and transform the release notes
             const lines = releaseNotesSection.split('\n');
             const newChangelog = [];
             let currentType = 'feat';
 
-            // --- Filtering configuration ---
+            // Filtering configuration
             const prefixesToFilter = ['source/', 'sources/', 'tool/', 'tools/'];
             const requiredKeyword = 'alloydb';
-            // ------------------------------------
 
             for (const line of lines) {
               const trimmedLine = line.trim();
@@ -100,14 +99,14 @@ jobs:
               return;
             }
 
-            // 4. Construct the override block
+            // Construct the override block
             const overrideBlock = [
               '\n\nBEGIN_COMMIT_OVERRIDE',
               ...newChangelog,
               'END_COMMIT_OVERRIDE'
             ].join('\n');
 
-            // 5. Update the PR body
+            // Update the PR body
             await github.rest.pulls.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
