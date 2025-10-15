@@ -15,13 +15,13 @@
 name: Enrich Toolbox Dependency PRs
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, edited]
 
 jobs:
   add-release-notes:
-    # Run only for Renovate's genai-toolbox PRs
     if: github.actor == 'renovate[bot]' && startsWith(github.head_ref, 'renovate/googleapis-genai-toolbox')
+
     runs-on: ubuntu-latest
     
     permissions:
