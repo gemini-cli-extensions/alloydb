@@ -15,7 +15,7 @@ Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini
 *   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
 
 ## Prerequisites
-add changes for tes
+add changes
 Before you begin, ensure you have the following:
 
 *   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
