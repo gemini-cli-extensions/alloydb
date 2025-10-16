@@ -70,13 +70,13 @@ are currently tested in the [MCP Toolbox GitHub](https://github.com/googleapis/g
 
 ### Other GitHub Checks
 
-*   **License Header Check:** A workflow ensures all necessary files contain the
+* **License Header Check:** A workflow ensures all necessary files contain the
     proper license header.
-*   **Conventional Commits:** This repository uses
+* **Conventional Commits:** This repository uses
     [Release Please](https://github.com/googleapis/release-please) to manage
     releases. Your commit messages must adhere to the
     [Conventional Commits](https://www.conventionalcommits.org/) specification.
-*   **Dependency Updates:** [Renovate](https://github.com/apps/forking-renovate)
+* **Dependency Updates:** [Renovate](https://github.com/apps/forking-renovate)
     is configured to automatically create pull requests for dependency updates.
 
 ## Building the Extension
@@ -97,8 +97,8 @@ required.
 The primary maintainers for this repository are defined in the
 [`.github/CODEOWNERS`](.github/CODEOWNERS) file:
 
-*   `@gemini-cli-extensions/senseai-eco`
-*   `@gemini-cli-extensions/alloydb-maintainers`
+* `@gemini-cli-extensions/senseai-eco`
+* `@gemini-cli-extensions/alloydb-maintainers`
 
 ### Releasing
 

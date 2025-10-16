@@ -6,24 +6,33 @@
 Instantly manage and query your [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) databases using the power of natural language, directly from your command line. Go from an idea to a running cluster and queryable data in minutes, without ever leaving your terminal.
 
 Learn more about [Gemini CLI Extensions](https://github.com/google-gemini/gemini-cli/blob/main/docs/extensions/index.md).
+> [!IMPORTANT]
+> **We Want Your Feedback!**
+> Please share your thoughts with us by filling out our feedback [form][form]. 
+> Your input is invaluable and helps us improve the project for everyone.
+
+[form]: https://docs.google.com/forms/d/e/1FAIpQLSfEGmLR46iipyNTgwTmIDJqzkAwDPXxbocpXpUbHXydiN1RTw/viewform?usp=pp_url&entry.157487=alloydb
 
 ## Why Use the AlloyDB Extension?
 
-*   **Natural Language Management:** Stop wrestling with complex commands. Provision infrastructure, manage users, and query data by describing what you want in plain English.
-*   **Seamless Workflow:** Stay in your CLI. No need to constantly switch contexts to the GCP console for common database tasks.
-*   **Full Lifecycle Control:** Manage the entire lifecycle of your database, from creating clusters and instances to exploring schemas and running queries.
-*   **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
+* **Natural Language Management:** Stop wrestling with complex commands. Provision infrastructure, manage users, and query data by describing what you want in plain English.
+* **Seamless Workflow:** Stay in your CLI. No need to constantly switch contexts to the GCP console for common database tasks.
+* **Full Lifecycle Control:** Manage the entire lifecycle of your database, from creating clusters and instances to exploring schemas and running queries.
+* **Code Generation:** Accelerate development by asking Gemini to generate data classes and other code snippets based on your table schemas.
+
 
 ## Prerequisites
 add changes
 Before you begin, ensure you have the following:
 
-*   [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
-*   A Google Cloud project with the **AlloyDB API** enabled.
-*   IAM Permissions:
-    *   AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
-    *   AlloyDB Client (`roles/alloydb.client`) (for connecting and querying)
-    *   Service Usage Consumer (`roles/serviceusage.serviceUsageConsumer`)
+* [Gemini CLI](https://github.com/google-gemini/gemini-cli) installed with version **+v0.6.0**.
+* Setup Gemini CLI [Authentication](https://github.com/google-gemini/gemini-cli/tree/main?tab=readme-ov-file#-authentication-options).
+* A Google Cloud project with the **AlloyDB API** enabled.
+* Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
+* IAM Permissions:
+    * AlloyDB Admin (`roles/alloydb.admin`) (for managing infrastructure)
+    * AlloyDB Client (`roles/alloydb.client`) (for connecting and querying)
+    * Service Usage Consumer (`roles/serviceusage.serviceUsageConsumer`)
 
 ## Getting Started
 
@@ -37,19 +46,19 @@ gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 
 ### Configuration
 
-Set the following environment variables before starting the Gemini CLI.
+Set the following environment variables before starting the Gemini CLI. These variables can be loaded from a `.env` file.
 This configuration is not required if utilizing the [Admin toolset](#supported-tools).
 
-*   `ALLOYDB_POSTGRES_PROJECT`: The GCP project ID.
-*   `ALLOYDB_POSTGRES_REGION`: The region of the AlloyDB instance (e.g., `us-central1`).
-*   `ALLOYDB_POSTGRES_CLUSTER`: The ID of the AlloyDB cluster.
-*   `ALLOYDB_POSTGRES_INSTANCE`: The ID of the AlloyDB instance.
-*   `ALLOYDB_POSTGRES_DATABASE`: The name of the database.
-*   `ALLOYDB_POSTGRES_USER`: (Optional) The database username.
-*   `ALLOYDB_POSTGRES_PASSWORD`: (Optional) The password for the database user.
-*   `ALLOYDB_POSTGRES_IP_TYPE`: (Optional) The IP Type (`PUBLIC`, `PRIVATE`, `PSC`). Defaults to `PUBLIC`.
-
-Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
+```
+export ALLOYDB_POSTGRES_PROJECT="<your-gcp-project-id>"
+export ALLOYDB_POSTGRES_REGION="<your-alloydb-region>"  # e.g. `us-central1`
+export ALLOYDB_POSTGRES_CLUSTER="<your-alloydb-cluster-id>"
+export ALLOYDB_POSTGRES_INSTANCE="<your-alloydb-instance-id>"
+export ALLOYDB_POSTGRES_DATABASE="<your-database-name>"
+export ALLOYDB_POSTGRES_USER="<your-database-user>"  # Optional
+export ALLOYDB_POSTGRES_PASSWORD="<your-database-password>"  # Optional
+export ALLOYDB_POSTGRES_IP_TYPE="PUBLIC"  # Optional: `PUBLIC`, `PRIVATE`, `PSC`. Defaults to `PUBLIC`.
+```
 
 > [!NOTE]
 > If your AlloyDB instance uses private IPs, you must run Gemini CLI in the same Virtual Private Cloud (VPC) network.
@@ -71,24 +80,24 @@ gemini
 
 Interact with AlloyDB using natural language right from your IDE:
 
-*   **Provision Infrastructure:**
+* **Provision Infrastructure:**
     * "Create a new AlloyDB cluster named 'e-commerce-prod' in the 'my-gcp-project' project."
     * "Add a read-only instance to my 'e-commerce-prod' cluster."
     * "Create a new user named 'analyst' with read access to all tables."
 
-*   **Explore Schemas and Data:**
+* **Explore Schemas and Data:**
     * "Show me all tables in the 'orders' database."
     * "What are the columns in the 'products' table?"
     * "How many orders were placed in the last 30 days, and what were the top 5 most purchased items?"
 
-*   **Generate Code:**
+* **Generate Code:**
     * "Generate a Python dataclass to represent the 'customers' table."
 
 ## Supported Tools
 
 This extension provides a comprehensive set of tools:
 
-*   **Admin:**
+* **Admin:**
 	* `create_cluster`: Use this tool to create an AlloyDB cluster.
 	* `create_instance`: Use this tool to create an AlloyDB instance (PRIMARY, READ-POOL, or SECONDARY).
 	* `create_user`: Use this tool to create ALLOYDB-BUILT-IN or IAM-based users for an AlloyDB cluster.
@@ -100,7 +109,7 @@ This extension provides a comprehensive set of tools:
 	* `list_users`: Use this tool to list users in a given project and location.
     * `wait_for_operation`: Use this tool to poll the operations API until the operation is done.
 
-*   **Data:**
+* **Data:**
     * `list_tables`: Use this tool to lists tables in the database.
     * `execute_sql`: Use this tool to executes a SQL query.
     * `list_active_queries`: Use this tool to list currently running queries.

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Enrich Toolbox Dependency PRs
+name: Mirror Toolbox Changelog
 
 on:
   pull_request_target:
@@ -20,98 +20,27 @@ on:
 
 jobs:
   add-release-notes:
-    if: github.actor == 'twishabansal' && startsWith(github.head_ref, 'twishabansal-patch')
-
+    if: github.actor == 'twishabansal' && startsWith(github.head_ref, 'twishabansal')
     runs-on: ubuntu-latest
-    
     permissions:
       pull-requests: write
 
     steps:
-      - name: Add Toolbox Release Notes to PR Body
-        uses: actions/github-script@v6
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          script: |
-            const prBody = context.payload.pull_request.body;
+          node-version: '20'
+          cache: 'npm'
 
-            // Idempotency Check
-            if (prBody.includes('BEGIN_COMMIT_OVERRIDE')) {
-              console.log('PR body already contains commit override block. Skipping.');
-              return;
-            }
+      - name: Install Dependencies
+        run: npm ci
 
-            // Extract the relevant changelog section
-            const startMarker = '<summary>googleapis/genai-toolbox';
-            const endMarker = '</details>';
-            const startIndex = prBody.indexOf(startMarker);
-            const endIndex = prBody.indexOf(endMarker, startIndex);
+      - name: Run Enrichment Script
+        run: node .github/scripts/mirror-changelog.js
+        env:
+          INPUT_GITHUB-TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_REQUIRED-KEYWORD: 'alloydb'
 
-            if (startIndex === -1 || endIndex === -1) {
-              console.log('Could not find the release notes section in the PR body. Exiting.');
-              return;
-            }
-
-            const releaseNotesSection = prBody.substring(startIndex, endIndex);
-
-            // Parse, Filter, and transform the release notes
-            const lines = releaseNotesSection.split('\n');
-            const newChangelog = [];
-            let currentType = 'feat';
-
-            // Filtering configuration
-            const prefixesToFilter = ['source/', 'sources/', 'tool/', 'tools/'];
-            const requiredKeyword = 'alloydb';
-
-            for (const line of lines) {
-              const trimmedLine = line.trim();
-              
-              if (trimmedLine.startsWith('##### ⚠ BREAKING CHANGES')) {
-                currentType = 'feat!';
-                continue;
-              } else if (trimmedLine.startsWith('##### Features')) {
-                currentType = 'feat';
-                continue;
-              } else if (trimmedLine.startsWith('##### Bug Fixes')) {
-                currentType = 'fix';
-                continue;
-              }
-
-              if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
-                let cleanLine = trimmedLine.substring(2)
-                                           .replace(/\(\[#\d+\]\(.*\)\)\s*\([a-z0-9]+\)$/, '')
-                                           .trim();
-
-                const lineAsLowerCase = cleanLine.toLowerCase();
-                const hasPrefix = prefixesToFilter.some(prefix => lineAsLowerCase.includes(prefix));
-                const hasKeyword = lineAsLowerCase.includes(requiredKeyword);
-                const shouldInclude = !hasPrefix || hasKeyword;
-
-                if (!shouldInclude) {
-                  console.log(`Filtering out: ${cleanLine}`);
-                  continue;
-                }
-                newChangelog.push(`${currentType}(toolbox): ${cleanLine}`);
-              }
-            }
-            
-            if (newChangelog.length === 0) {
-              console.log('Found no changelog items to add after filtering. Exiting.');
-              return;
-            }
-
-            // Construct the override block
-            const overrideBlock = [
-              '\n\nBEGIN_COMMIT_OVERRIDE',
-              ...newChangelog,
-              'END_COMMIT_OVERRIDE'
-            ].join('\n');
-
-            // Update the PR body
-            await github.rest.pulls.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-              body: prBody + overrideBlock,
-            });
-
-            console.log('Successfully added filtered release notes to the PR body.');
