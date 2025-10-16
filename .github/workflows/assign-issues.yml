@@ -27,7 +27,6 @@ jobs:
       - name: "Auto-assign issue"
         uses: pozil/auto-assign-issue@v2
         with:
-          repo-token: ${{ secrets.READ_TEAM_TOKEN }} # to assign teams a token with read:org scope is required
-          teams: alloydb-maintainers
+          assignees: mjacobs,dolphin1999,Myst9,isaurabhuttam,prernakakkar-google,trehanshakuntG
           numOfAssignee: 1
           abortIfPreviousAssignees: true
