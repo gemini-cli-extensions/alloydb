@@ -102,7 +102,20 @@ The primary maintainers for this repository are defined in the
 
 ### Releasing
 
-The release process is automated using `release-please`.
+The release process is automated using `release-please`. It consists of an automated changelog preparation step followed by the manual merging of a Release PR.
+
+#### Automated Changelog Enrichment
+
+Before a Release PR is even created, a special workflow automatically mirrors relevant changelogs from the core `googleapis/genai-toolbox` dependency. This ensures that the release notes for this extension accurately reflect important upstream changes.
+
+The process is handled by the [`mirror-changelogs.yml`](.github/workflows/mirror-changelogs.yml) workflow:
+
+1.  **Trigger:** The workflow runs automatically on pull requests created by Renovate for `toolbox` version updates.
+2.  **Parsing:** It reads the detailed release notes that Renovate includes in the PR body.
+3.  **Filtering:** A Node.js script located at [`.github/scripts/mirror-changelogs.js`](.github/scripts/mirror-changelogs.js) filters these release notes to include only changes relevant to this extension. The relevance is determined by a keyword (e.g., `alloydb`), passed as an environment variable in the workflow file.
+4.  **Changelog Injection:** The script formats the filtered entries as conventional commits and injects them into the PR body within a `BEGIN_COMMIT_OVERRIDE` block. This special block tells `release-please` to use this content for the changelog instead of the standard commit message.
+
+#### Release Process
 
 1.  **Release PR:** When commits with conventional commit headers (e.g., `feat:`,
     `fix:`) are merged into the `main` branch, `release-please` will
