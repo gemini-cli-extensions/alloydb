@@ -1,0 +1,19 @@
+name: PR assignment
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: "Auto-assign PR"
+        uses: pozil/auto-assign-issue@v2
+        with:
+          repo-token: ${{ secrets.READ_TEAM_TOKEN }} # to assign teams a token with read:org scope is required
+          teams: alloydb-maintainers
+          numOfAssignee: 1
+          abortIfPreviousAssignees: true
