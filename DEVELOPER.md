@@ -127,12 +127,13 @@ The process is handled by the [`mirror-changelog.yml`](.github/workflows/mirror-
    message, effectively mirroring the filtered upstream changelog into this
    project's release notes.
 
-> **Note for Maintainers:** The automated script appends the
-> `BEGIN_COMMIT_OVERRIDE` block but does not remove Renovate's original,
-> unfiltered `Release Notes` section. For clarity in the final merged pull
-> request, it is recommended that maintainers **manually delete the original
-> `Release Notes` section** from the PR body before merging. The automated
-> override block is the source of truth for the release.
+> **Note for Maintainers:** The filtering script is an automation aid, but it
+> may occasionally produce "false positives" (e.g., an internal logging change
+> that happens to contain the keyword). Before merging a `toolbox` dependency
+> PR, maintainers must **review the generated `BEGIN_COMMIT_OVERRIDE` block**
+> and manually delete any lines that are not relevant to the end-users of this
+> extension. The curated override block is the final source of truth for the
+> release changelog.
 
 #### Release Process
 
