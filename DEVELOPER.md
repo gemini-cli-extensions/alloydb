@@ -108,15 +108,31 @@ The release process is automated using `release-please`. It consists of an autom
 
 Before a Release PR is even created, a special workflow automatically mirrors relevant changelogs from the core `googleapis/genai-toolbox` dependency. This ensures that the release notes for this extension accurately reflect important upstream changes.
 
-The process is handled by the [`mirror-changelogs.yml`](.github/workflows/mirror-changelogs.yml) workflow:
+The process is handled by the [`mirror-changelog.yml`](.github/workflows/mirror-changelog.yml) workflow:
 
-1.  **Trigger:** The workflow runs automatically on pull requests created by Renovate for `toolbox` version updates.
-2.  **Parsing:** It reads the detailed release notes that Renovate includes in the PR body.
-3.  **Filtering:** A Node.js script located at [`.github/scripts/mirror-changelogs.js`](.github/scripts/mirror-changelogs.js) filters these release notes to include only changes relevant to this extension. The relevance is determined by a keyword (e.g., `alloydb`), passed as an environment variable in the workflow file.
-4.  **Changelog Injection:** The script formats the filtered entries as conventional commits and injects them into the PR body within a `BEGIN_COMMIT_OVERRIDE` block.
-5.  **Release Please:** When the main Release PR is created, `release-please` reads this override block instead of the standard `chore(deps): ...` commit message, effectively mirroring the filtered upstream changelog into this project's release notes.
+1. **Trigger:** The workflow runs automatically on pull requests created by
+   Renovate for `toolbox` version updates.
+2. **Parsing:** It reads the detailed release notes that Renovate includes in
+   the PR body.
+3. **Filtering:** A Node.js script located at
+   [`.github/scripts/mirror-changelog.js`](.github/scripts/mirror-changelog.js)
+   filters these release notes to include only changes relevant to this
+   extension. The relevance is determined by a keyword (e.g., `alloydb`), passed
+   as an environment variable in the workflow file.
+4. **Changelog Injection:** The script formats the filtered entries as
+   conventional commits and injects them into the PR body within a
+   `BEGIN_COMMIT_OVERRIDE` block.
+5. **Release Please:** When the main Release PR is created, `release-please`
+   reads this override block instead of the standard `chore(deps): ...` commit
+   message, effectively mirroring the filtered upstream changelog into this
+   project's release notes.
 
-> **Note for Maintainers:** The automated script appends the `BEGIN_COMMIT_OVERRIDE` block but does not remove Renovate's original, unfiltered `### Release Notes` section. For clarity in the final merged pull request, it is recommended that maintainers **manually delete the original `### Release Notes` section** from the PR body before merging. The automated override block is the source of truth for the release.
+> **Note for Maintainers:** The automated script appends the
+> `BEGIN_COMMIT_OVERRIDE` block but does not remove Renovate's original,
+> unfiltered `Release Notes` section. For clarity in the final merged pull
+> request, it is recommended that maintainers **manually delete the original
+> `Release Notes` section** from the PR body before merging. The automated
+> override block is the source of truth for the release.
 
 #### Release Process
 
