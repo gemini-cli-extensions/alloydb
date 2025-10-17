@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.2...0.1.3) (2025-10-17)
+
+
+### Bug Fixes
+
+* update context for install instructions ([#70](https://github.com/gemini-cli-extensions/alloydb/issues/70)) ([2889fe5](https://github.com/gemini-cli-extensions/alloydb/commit/2889fe5243b7c121c5b979a16dea1a60a8c4465b))
+
 ## [0.1.2](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.1...0.1.2) (2025-10-13)
 
 
