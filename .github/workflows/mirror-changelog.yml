@@ -20,7 +20,7 @@ on:
 
 jobs:
   add-release-notes:
-    if: github.actor == 'twishabansal' && startsWith(github.head_ref, 'twishabansal')
+    if: github.actor == 'renovate[bot]' && startsWith(github.head_ref, 'renovate/googleapis-genai-toolbox')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
