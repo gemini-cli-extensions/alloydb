@@ -49,9 +49,9 @@ gemini extensions install https://github.com/gemini-cli-extensions/alloydb
 Set the following environment variables before starting the Gemini CLI. These variables can be loaded from a `.env` file.
 This configuration is not required if utilizing the [Admin toolset](#supported-tools).
 
-```
+```bash
 export ALLOYDB_POSTGRES_PROJECT="<your-gcp-project-id>"
-export ALLOYDB_POSTGRES_REGION="<your-alloydb-region>"  # e.g. `us-central1`
+export ALLOYDB_POSTGRES_REGION="<your-alloydb-region>"
 export ALLOYDB_POSTGRES_CLUSTER="<your-alloydb-cluster-id>"
 export ALLOYDB_POSTGRES_INSTANCE="<your-alloydb-instance-id>"
 export ALLOYDB_POSTGRES_DATABASE="<your-database-name>"
