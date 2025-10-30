@@ -16,7 +16,7 @@ name: PR assignment
 
 on:
   pull_request_target:
-    types: [opened, ready_for_review, reopened]
+    types: [opened, reopened, review_requested]
 
 jobs:
   auto-assign:
