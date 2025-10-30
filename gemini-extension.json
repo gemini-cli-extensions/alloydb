@@ -17,15 +17,50 @@
         "--prebuilt",
         "alloydb-postgres",
         "--stdio"
-      ],
-      "env": {
-        "ALLOYDB_POSTGRES_PROJECT": "$ALLOYDB_POSTGRES_PROJECT",
-        "ALLOYDB_POSTGRES_REGION": "$ALLOYDB_POSTGRES_REGION",
-        "ALLOYDB_POSTGRES_CLUSTER": "$ALLOYDB_POSTGRES_CLUSTER",
-        "ALLOYDB_POSTGRES_INSTANCE": "$ALLOYDB_POSTGRES_INSTANCE",
-        "ALLOYDB_POSTGRES_DATABASE": "$ALLOYDB_POSTGRES_DATABASE"
-      }
+      ]
     }
   },
-  "contextFileName": "ALLOYDB.md"
+  "contextFileName": "ALLOYDB.md",
+  "settings": [
+    {
+      "name": "Project ID",
+      "description": "ID of the Google Cloud project",
+      "envVar": "ALLOYDB_POSTGRES_PROJECT"
+    },
+    {
+      "name": "Region",
+      "description": "Region of the AlloyDB cluster",
+      "envVar": "ALLOYDB_POSTGRES_REGION"
+    },
+    {
+      "name": "Cluster ID",
+      "description": "ID of the AlloyDB cluster",
+      "envVar": "ALLOYDB_POSTGRES_CLUSTER"
+    },
+    {
+      "name": "Instance ID",
+      "description": "ID of the AlloyDB instance",
+      "envVar": "ALLOYDB_POSTGRES_INSTANCE"
+    },
+    {
+      "name": "Database Name",
+      "description": "Name of the database",
+      "envVar": "ALLOYDB_POSTGRES_DATABASE"
+    },
+    {
+      "name": "User",
+      "description": "(Optional) Username of the database user",
+      "envVar": "ALLOYDB_POSTGRES_USER"
+    },
+    {
+      "name": "Password",
+      "description": "(Optional) Password of the database user",
+      "envVar": "ALLOYDB_POSTGRES_PASSWORD"
+    },
+    {
+      "name": "IP Type",
+      "description": "(Optional) Type of the IP address (PUBLIC, PRIVATE, or PSC)",
+      "envVar": "ALLOYDB_POSTGRES_IP_TYPE"
+    }
+  ]
 }
