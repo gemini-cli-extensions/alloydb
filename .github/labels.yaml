@@ -82,5 +82,5 @@
   description: 'Status: reviewer is awaiting feedback or responses from the author before proceeding.'
 
 - name: 'release-please:force-run'
-  color: 0e8a16
+  color: bdca82
   description: To run release-please
