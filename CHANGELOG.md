@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.4](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.3...0.1.4) (2025-11-07)
+
+
+### Features
+
+* **tools/alloydbainl:** update AlloyDB AI NL statement order ([genai-toolbox#​1753](https://redirect.github.com/googleapis/genai-toolbox/issues/1753)) ([45933f1](https://github.com/gemini-cli-extensions/alloydb/commit/45933f10e4daafb177bd59c069f8880d7a485ed5))
+
+
+### Bug Fixes
+
+* **tools/alloydbainl:** AlloyDB AI NL execute\_sql statement order ([genai-toolbox#​1753](https://redirect.github.com/googleapis/genai-toolbox/issues/1753)) ([9723cad](https://redirect.github.com/googleapis/genai-toolbox/commit/9723cadaa181a76d8fdda65a6254f6c887c3cf57)) ([45933f1](https://github.com/gemini-cli-extensions/alloydb/commit/45933f10e4daafb177bd59c069f8880d7a485ed5))
+
 ## [0.1.3](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.2...0.1.3) (2025-10-17)
 
 
