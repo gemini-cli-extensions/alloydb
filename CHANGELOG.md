@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.6](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.5...0.1.6) (2025-11-19)
+
+
+### Features
+
+* **tools/postgres:** Add `long_running_transactions`, `list_locks` and `replication_stats` tools ([#1751](https://github.com/googleapis/genai-toolbox/issues/1751)) ([5abad5d](https://github.com/googleapis/genai-toolbox/commit/5abad5d56c6cc5ba86adc5253b948bf8230fa830))
+
+
+### Bug Fixes
+
+* **tools:** Check for query execution error for pgxpool.Pool ([genai-toolbox#​1969](https://redirect.github.com/googleapis/genai-toolbox/issues/1969)) ([2bff138](https://redirect.github.com/googleapis/genai-toolbox/commit/2bff1384a3570ef46bc03ebebc507923af261987)) ([1da5746](https://github.com/gemini-cli-extensions/alloydb/commit/1da57464893c69c063e73f72b4bad342c5a3efd8))
+* **tools/alloydbgetinstance:** Remove parameter duplication ([genai-toolbox#​1993](https://redirect.github.com/googleapis/genai-toolbox/issues/1993)) ([0e269a1](https://redirect.github.com/googleapis/genai-toolbox/commit/0e269a1d125eed16a51ead27db4398e6e48cb948)) ([1da5746](https://github.com/gemini-cli-extensions/alloydb/commit/1da57464893c69c063e73f72b4bad342c5a3efd8))
+
 ## [0.1.5](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.4...0.1.5) (2025-11-18)
 
 
