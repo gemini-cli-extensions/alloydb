@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.6...0.1.7) (2025-12-05)
+
+
+### Bug Fixes
+
+* **tools/alloydb-postgres-list-tables:** Exclude google\_ml schema from list\_tables ([genai-toolbox#​2046](https://redirect.github.com/googleapis/genai-toolbox/issues/2046)) ([a03984c](https://redirect.github.com/googleapis/genai-toolbox/commit/a03984cc15254c928f30085f8fa509ded6a79a0c)) ([921f64e](https://github.com/gemini-cli-extensions/alloydb/commit/921f64ef26954dae0a747d4bfb30c85f9aee6d53))
+* **tools/alloydbcreateuser:** Remove duplication of project praram ([genai-toolbox#​2028](https://redirect.github.com/googleapis/genai-toolbox/issues/2028)) ([730ac6d](https://redirect.github.com/googleapis/genai-toolbox/commit/730ac6d22805fd50b4a675b74c1865f4e7689e7c)) ([921f64e](https://github.com/gemini-cli-extensions/alloydb/commit/921f64ef26954dae0a747d4bfb30c85f9aee6d53))
+
 ## [0.1.6](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.5...0.1.6) (2025-11-19)
 
 
