@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.7...0.1.8) (2025-12-15)
+
+
+### Bug Fixes
+
+* List tables tools null fix ([genai-toolbox#​2107](https://redirect.github.com/googleapis/genai-toolbox/issues/2107)) ([2b45266](https://redirect.github.com/googleapis/genai-toolbox/commit/2b452665983154041d4cd0ed7d82532e4af682eb)) ([e8c6640](https://github.com/gemini-cli-extensions/alloydb/commit/e8c6640d0d552bee841a1e59557cf2cd31a9b753))
+
 ## [0.1.7](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.6...0.1.7) (2025-12-05)
 
 
