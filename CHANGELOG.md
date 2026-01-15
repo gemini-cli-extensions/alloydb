@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.9](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.8...0.1.9) (2026-01-13)
+
+
+### Bug Fixes
+
+* **tools/alloydb-wait-for-operation:** Fix connection message generation ([genai-toolbox#​2228](https://redirect.github.com/googleapis/genai-toolbox/issues/2228)) ([7053fbb](https://redirect.github.com/googleapis/genai-toolbox/commit/7053fbb1953653143d39a8510916ea97a91022a6)) ([177e29e](https://github.com/gemini-cli-extensions/alloydb/commit/177e29e7f836e93d8ca5932c6941e99ee34f7faf))
+* **tools/alloydbainl:** Only add psv when NL Config Param is defined ([genai-toolbox#​2265](https://redirect.github.com/googleapis/genai-toolbox/issues/2265)) ([ef8f3b0](https://redirect.github.com/googleapis/genai-toolbox/commit/ef8f3b02f2f38ce94a6ba9acf35d08b9469bef4e)) ([177e29e](https://github.com/gemini-cli-extensions/alloydb/commit/177e29e7f836e93d8ca5932c6941e99ee34f7faf))
+
 ## [0.1.8](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.7...0.1.8) (2025-12-15)
 
 
