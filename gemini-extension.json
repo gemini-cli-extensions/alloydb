@@ -28,7 +28,7 @@
       "envVar": "ALLOYDB_POSTGRES_PROJECT"
     },
     {
-      "name": "Region",
+      "name": "Location",
       "description": "Region of the AlloyDB cluster",
       "envVar": "ALLOYDB_POSTGRES_REGION"
     },
