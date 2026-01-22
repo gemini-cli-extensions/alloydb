@@ -49,12 +49,12 @@
     },
     {
       "name": "User",
-      "description": "(Optional) Username of the database user",
+      "description": "(Optional) Username of the database user (Default: IAM user)",
       "envVar": "ALLOYDB_POSTGRES_USER"
     },
     {
       "name": "Password",
-      "description": "(Optional) Password of the database user",
+      "description": "(Optional) Password of the database user (Default: IAM user)",
       "envVar": "ALLOYDB_POSTGRES_PASSWORD",
       "sensitive": true,
     },
