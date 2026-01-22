@@ -60,7 +60,7 @@
     },
     {
       "name": "IP Type",
-      "description": "(Optional) Type of the IP address (PUBLIC, PRIVATE, or PSC)",
+      "description": "(Optional) Type of the IP address: PUBLIC, PRIVATE, or PSC (Default: Public)",
       "envVar": "ALLOYDB_POSTGRES_IP_TYPE"
     }
   ]
