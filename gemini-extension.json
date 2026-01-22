@@ -43,7 +43,7 @@
       "envVar": "ALLOYDB_POSTGRES_INSTANCE"
     },
     {
-      "name": "Database Name",
+      "name": "Database",
       "description": "Name of the database",
       "envVar": "ALLOYDB_POSTGRES_DATABASE"
     },
