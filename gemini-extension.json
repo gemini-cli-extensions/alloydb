@@ -56,7 +56,7 @@
       "name": "Password",
       "description": "(Optional) Password of the database user (Default: IAM user)",
       "envVar": "ALLOYDB_POSTGRES_PASSWORD",
-      "sensitive": true,
+      "sensitive": true
     },
     {
       "name": "IP Type",
