@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.10](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.9...0.1.10) (2026-01-28)
+
+
+### Features
+
+* add Configuration settings ([#108](https://github.com/gemini-cli-extensions/alloydb/issues/108)) ([4ec5205](https://github.com/gemini-cli-extensions/alloydb/commit/4ec52055445e917371fe130a2e5054df5b75eca0))
+* **deps:** update dependency googleapis/genai-toolbox to v0.26.0 ([#109](https://github.com/gemini-cli-extensions/alloydb/issues/109)) ([7fa79c2](https://github.com/gemini-cli-extensions/alloydb/commit/7fa79c2c2caf49498190bc59e5712a2837b18aa8))
+
 ## [0.1.9](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.8...0.1.9) (2026-01-13)
 
 
