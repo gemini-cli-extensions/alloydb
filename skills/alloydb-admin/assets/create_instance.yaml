@@ -1,0 +1,12 @@
+authRequired: []
+description: ""
+kind: tools
+name: create_instance
+source: alloydb-admin-source
+type: alloydb-create-instance
+---
+defaultProject: whaoyu-playground
+kind: sources
+name: alloydb-admin-source
+type: alloydb-admin
+useClientOAuth: false

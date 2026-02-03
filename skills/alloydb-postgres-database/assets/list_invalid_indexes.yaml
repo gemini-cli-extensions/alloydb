@@ -1,0 +1,33 @@
+authRequired: []
+description: Lists all invalid PostgreSQL indexes which are taking up disk space but are unusable by the query planner. Typically created by failed CREATE INDEX CONCURRENTLY operations.
+kind: tools
+name: list_invalid_indexes
+parameters: []
+source: alloydb-pg-source
+statement: |
+  SELECT
+      nspname AS schema_name,
+      indexrelid::regclass AS index_name,
+      indrelid::regclass AS table_name,
+      pg_size_pretty(pg_total_relation_size(indexrelid)) AS index_size,
+      indisready,
+      indisvalid,
+      pg_get_indexdef(pg_class.oid) AS index_def
+  FROM pg_index
+  JOIN pg_class ON pg_class.oid = pg_index.indexrelid
+  JOIN pg_namespace ON pg_namespace.oid = pg_class.relnamespace
+  WHERE indisvalid = FALSE;
+templateParameters: []
+type: postgres-sql
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

@@ -1,0 +1,18 @@
+authRequired: []
+description: ""
+kind: tools
+name: list_triggers
+source: alloydb-pg-source
+type: postgres-list-triggers
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

@@ -1,0 +1,34 @@
+authRequired: []
+description: Generate a PostgreSQL EXPLAIN plan in JSON format for a single SQL statement—without executing it. This returns the optimizer's estimated plan, costs, and rows (no ANALYZE, no extra options). Use in production safely for plan inspection, regression checks, and query tuning workflows.
+kind: tools
+name: get_query_plan
+parameters: []
+source: alloydb-pg-source
+statement: |
+  EXPLAIN (FORMAT JSON) {{.query}};
+templateParameters:
+- allowedValues: []
+  authServices: []
+  authSources: []
+  default: null
+  description: The SQL statement for which you want to generate plan (omit the EXPLAIN keyword).
+  embeddedBy: ""
+  escape: null
+  excludedValues: []
+  name: query
+  required: true
+  type: string
+  valueFromParam: ""
+type: postgres-sql
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

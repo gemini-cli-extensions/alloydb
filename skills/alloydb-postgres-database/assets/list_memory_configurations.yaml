@@ -1,0 +1,37 @@
+authRequired: []
+description: List PostgreSQL memory-related configurations (name and current setting) from pg_settings.
+kind: tools
+name: list_memory_configurations
+parameters: []
+source: alloydb-pg-source
+statement: |
+  (
+      SELECT
+      name,
+      pg_size_pretty((setting::bigint * 1024)::bigint) setting
+      FROM pg_settings
+      WHERE name IN ('work_mem', 'maintenance_work_mem')
+  )
+  UNION ALL
+  (
+      SELECT
+      name,
+      pg_size_pretty((((setting::bigint) * 8) * 1024)::bigint)
+      FROM pg_settings
+      WHERE name IN ('shared_buffers', 'wal_buffers', 'effective_cache_size', 'temp_buffers')
+  )
+  ORDER BY 1 DESC;
+templateParameters: []
+type: postgres-sql
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

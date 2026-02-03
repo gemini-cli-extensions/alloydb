@@ -1,0 +1,12 @@
+authRequired: []
+description: ""
+kind: tools
+name: create_cluster
+source: alloydb-admin-source
+type: alloydb-create-cluster
+---
+defaultProject: whaoyu-playground
+kind: sources
+name: alloydb-admin-source
+type: alloydb-admin
+useClientOAuth: false

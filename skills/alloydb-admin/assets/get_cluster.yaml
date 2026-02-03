@@ -1,0 +1,13 @@
+authRequired: []
+baseURL: ""
+description: ""
+kind: tools
+name: get_cluster
+source: alloydb-admin-source
+type: alloydb-get-cluster
+---
+defaultProject: whaoyu-playground
+kind: sources
+name: alloydb-admin-source
+type: alloydb-admin
+useClientOAuth: false

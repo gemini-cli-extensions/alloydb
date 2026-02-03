@@ -1,0 +1,18 @@
+authRequired: []
+description: Lists detailed schema information (object type, columns, constraints, indexes, triggers, owner, comment) as JSON for user-created tables (ordinary or partitioned). Filters by a comma-separated list of names. If names are omitted, lists all tables in user schemas.
+kind: tools
+name: list_tables
+source: alloydb-pg-source
+type: postgres-list-tables
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

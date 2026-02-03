@@ -1,0 +1,16 @@
+authRequired: []
+delay: 1s
+description: ""
+kind: tools
+maxDelay: 4m
+maxRetries: 10
+multiplier: 2.0
+name: wait_for_operation
+source: alloydb-admin-source
+type: alloydb-wait-for-operation
+---
+defaultProject: whaoyu-playground
+kind: sources
+name: alloydb-admin-source
+type: alloydb-admin
+useClientOAuth: false

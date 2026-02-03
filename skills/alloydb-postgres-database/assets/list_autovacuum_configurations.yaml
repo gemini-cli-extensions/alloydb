@@ -1,0 +1,25 @@
+authRequired: []
+description: List PostgreSQL autovacuum-related configurations (name and current setting) from pg_settings.
+kind: tools
+name: list_autovacuum_configurations
+parameters: []
+source: alloydb-pg-source
+statement: |
+  SELECT name,
+      setting
+  FROM   pg_settings
+  WHERE  category = 'Autovacuum';
+templateParameters: []
+type: postgres-sql
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres

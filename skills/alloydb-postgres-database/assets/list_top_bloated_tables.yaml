@@ -1,0 +1,48 @@
+authRequired: []
+description: |
+  List the top tables by dead-tuple (approximate bloat signal), returning schema, table, live/dead tuples, percentage, and last vacuum/analyze times.
+kind: tools
+name: list_top_bloated_tables
+parameters:
+- allowedValues: []
+  authServices: []
+  authSources: []
+  default: 50
+  description: The maximum number of results to return.
+  embeddedBy: ""
+  excludedValues: []
+  maxValue: null
+  minValue: null
+  name: limit
+  required: null
+  type: integer
+  valueFromParam: ""
+source: alloydb-pg-source
+statement: |
+  SELECT
+      schemaname AS schema_name,
+      relname AS relation_name,
+      n_live_tup AS live_tuples,
+      n_dead_tup AS dead_tuples,
+      TRUNC((n_dead_tup::NUMERIC / NULLIF(n_live_tup + n_dead_tup, 0)) * 100, 2) AS dead_tuple_percentage,
+      last_vacuum,
+      last_autovacuum,
+      last_analyze,
+      last_autoanalyze
+  FROM pg_stat_user_tables
+  ORDER BY n_dead_tup DESC
+  LIMIT COALESCE($1::int, 50);
+templateParameters: []
+type: postgres-sql
+---
+cluster: free-trial-cluster
+database: example
+instance: primary
+ipType: public
+kind: sources
+name: alloydb-pg-source
+password: ecosystem
+project: whaoyu-playground
+region: us-central1
+type: alloydb-postgres
+user: postgres
