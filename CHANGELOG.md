@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.10...0.1.11) (2026-02-24)
+
+
+### Bug Fixes
+
+* remove broken keychain support for password ([#127](https://github.com/gemini-cli-extensions/alloydb/issues/127)) ([65746bb](https://github.com/gemini-cli-extensions/alloydb/commit/65746bb1203afaf4af4e0edd5ce255f428488309))
+
 ## [0.1.10](https://github.com/gemini-cli-extensions/alloydb/compare/0.1.9...0.1.10) (2026-01-28)
 
 
