@@ -43,15 +43,15 @@
     },
     "alloydb_postgres_user": {
       "title": "User",
-      "description": "(Optional) Username of the database user",
+      "description": "(Optional) Username of the database user (Default: IAM user)",
       "type": "string",
       "sensitive": false
     },
     "alloydb_postgres_password": {
       "title": "Password",
-      "description": "(Optional) Password of the database user",
+      "description":  "(Optional) Password of the database user (Default: IAM user)",
       "type": "string",
-      "sensitive": true
+      "sensitive": false
     },
     "alloydb_postgres_ip_type": {
       "title": "IP Type",
