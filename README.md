@@ -101,40 +101,21 @@ To view or update your configuration in Gemini CLI:
 gemini
 ```
 
+_(Tip: Run `/extensions list` to verify your configuration and active extensions.)_
+
+> [!WARNING]
+> **Changing Instance & Database Connections**
+> Currently, the database connection must be configured before starting the agent and can not be changed during a session.
+> To save and resume conversation history in Gemini CLI use command: `/chat save <tag>` and `/chat resume <tag>`.
+
 </details>
 
 <details>
 <summary id="claude-code">Claude Code</summary>
 
-**1. Add the MCP server configuration:**
 
-In your `claude_desktop_config.json` (or the appropriate configuration file for Claude Code), add the following entry under `mcpServers`:
-
-```json
-{
-  "mcpServers": {
-    "alloydb": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@toolbox-sdk/server@1.0.0",
-        "--prebuilt",
-        "alloydb-postgres",
-        "--stdio"
-      ],
-      "env": {
-        "ALLOYDB_POSTGRES_PROJECT": "<your-project-id>",
-        "ALLOYDB_POSTGRES_REGION": "<your-region>",
-        "ALLOYDB_POSTGRES_CLUSTER": "<your-cluster-id>",
-        "ALLOYDB_POSTGRES_INSTANCE": "<your-instance-id>",
-        "ALLOYDB_POSTGRES_DATABASE": "<your-database-name>",
-        "ALLOYDB_POSTGRES_USER": "<your-user>",
-        "ALLOYDB_POSTGRES_PASSWORD": "<your-password>"
-      }
-    }
-  }
-}
-```
+**1. Set env vars:**
+In your terminal, set your environment vars as described in the [configuration section](#configuration).
 
 **2. Start the agent:**
 
@@ -142,22 +123,67 @@ In your `claude_desktop_config.json` (or the appropriate configuration file for 
 claude
 ```
 
+**3. Add the marketplace:**
+
+```bash
+/plugin marketplace add https://github.com/gemini-cli-extensions/alloydb.git#0.1.11
+```
+
+**4. Install the plugin:**
+
+```bash
+/plugin install alloydb@alloydb-marketplace
+```
+
+_(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or `/reload-plugins` if you just installed it.)_
 </details>
 
 <details>
 <summary id="codex">Codex</summary>
 
-**1. Install the skills:**
+**1. Clone the Repo:**
 
-Follow the Codex documentation to add a new MCP server. Use the following configuration:
+```bash
+git clone --branch 0.3.0 git@github.com:gemini-cli-extensions/alloydb.git
+```
 
-- **Command:** `npx`
-- **Args:** `-y`, `@toolbox-sdk/server@1.0.0`, `--prebuilt`, `alloydb-postgres`, `--stdio`
-- **Env Vars:** Set the environment variables as described in the [configuration section](#configuration).
+**2. Install the plugin:**
 
-**2. Start the agent:**
+```bash
+mkdir -p ~/.codex/plugins
+cp -R /absolute/path/to/alloydb ~/.codex/plugins/alloydb
+```
 
-Launch Codex and ensure the `alloydb` MCP server is active.
+**3. Set env vars:**
+Enter your environment vars as described in the [configuration section](#configuration).
+
+**4. Create or update marketplace.json:**
+`~/.agents/plugins/marketplace.json`
+
+```json
+{
+  "name": "my-data-cloud-google-marketplace",
+  "interface": {
+    "displayName": "Google Data Cloud Skills"
+  },
+  "plugins": [
+    {
+      "name": "alloydb",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alloydb"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Database"
+    }
+  ]
+}
+```
+
+_(Tip: Run `codex plugin list` or use the `/plugins` interactive menu to verify your installed plugins.)_
 
 </details>
 
