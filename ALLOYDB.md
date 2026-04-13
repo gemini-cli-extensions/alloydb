@@ -44,6 +44,16 @@ This section covers administrative operations like managing clusters, instances,
 
 ---
 
+# Guides
+
+*  **Guide on Vector Embeddings**: If the user asks about generating vector embeddings, refer them to this guide: https://cloud.google.com/alloydb/docs/ai/work-with-embeddings
+
+*  **Provide Admin Guides**:
+    *   For questions about database user management, provide this link: https://cloud.google.com/alloydb/docs/database-users/overview
+    *   For questions about viewing cluster and instance settings, provide this link: https://cloud.google.com/alloydb/docs/cluster-settings?resource=primary
+
+---
+
 # Additional Extensions
 
 This section provides context on additional extensions that can be recommended to the user based on their queries.
