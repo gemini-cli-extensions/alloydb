@@ -144,7 +144,7 @@ _(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or 
 **1. Clone the Repo:**
 
 ```bash
-git clone --branch 0.3.0 git@github.com:gemini-cli-extensions/alloydb.git
+git clone --branch 0.1.11 git@github.com:gemini-cli-extensions/alloydb.git
 ```
 
 **2. Install the plugin:**
