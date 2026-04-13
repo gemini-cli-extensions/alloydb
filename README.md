@@ -74,6 +74,8 @@ To start interacting with your database, install the skills for your preferred A
 
 For the latest version, check the [releases page][releases].
 
+<!-- {x-release-please-start-version} -->
+
 [releases]: https://github.com/gemini-cli-extensions/alloydb/releases
 
 <details open>
@@ -158,6 +160,9 @@ Follow the Codex documentation to add a new MCP server. Use the following config
 Launch Codex and ensure the `alloydb` MCP server is active.
 
 </details>
+
+<!-- {x-release-please-end} -->
+
 
 ## Usage Examples
 
