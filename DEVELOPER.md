@@ -25,36 +25,7 @@ The development process involves generating the skills from the `toolbox` prebui
     cd alloydb
     ```
 
-2.  **Generate Skills:** Use the latest `toolbox` binary to generate the skills.
-
-    ```bash
-    export VERSION=1.0.0
-    # Download the toolbox binary for your platform (darwin/arm64 shown)
-    curl -L -o toolbox https://storage.googleapis.com/mcp-toolbox-for-databases/v$VERSION/darwin/arm64/toolbox
-    chmod +x toolbox
-
-    # Generate a specific skill (example for alloydb-postgres-admin)
-    ./toolbox --prebuilt alloydb-postgres skills-generate \
-      --name "alloydb-postgres-admin" \
-      --description "Use these skills when you need to provision new AlloyDB clusters and instances, monitor their creation status, and retrieve high-level configuration or health data for the environment." \
-      --toolset=admin \
-      --license-header "// Copyright 2026 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the \"License\");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an \"AS IS\" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License." \
-      --additional-notes="Note: The scripts automatically load the environment variables from various .env files. Do not ask the user to set vars unless skill executions fails due to env var absence."
-    ```
-
-3.  **Install the Extension Locally:** Use the Gemini CLI to install the
+2.  **Install the Extension Locally:** Use the Gemini CLI to install the
     extension from your local directory.
 
     ```bash
@@ -62,7 +33,7 @@ The development process involves generating the skills from the `toolbox` prebui
     ```
     The CLI will prompt you to confirm the installation. Accept it to proceed.
 
-4.  **Testing Changes:** After installation, start the Gemini CLI (`gemini`).
+3.  **Testing Changes:** After installation, start the Gemini CLI (`gemini`).
     You can now interact with the `alloydb` skills to manually test your changes
     against your connected database.
 
