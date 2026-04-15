@@ -220,8 +220,8 @@ This repository includes the following skill sets:
 
 Find more skills at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
 - [Cloud SQL for PostgreSQL](https://github.com/gemini-cli-extensions/cloud-sql-postgresql)
-- [BigQuery](https://github.com/gemini-cli-extensions/bigquery)
-- [Firestore](https://github.com/gemini-cli-extensions/firestore)
+- [BigQuery](https://github.com/gemini-cli-extensions/bigquery-data-analytics)
+- [Firestore](https://github.com/gemini-cli-extensions/firestore-native)
 
 ## Troubleshooting
 
