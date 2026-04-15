@@ -1,0 +1,16 @@
+{
+  "name": "alloydb-marketplace",
+  "owner": {
+    "name": "Google LLC",
+    "email": "data-cloud-ai-integrations@google.com"
+  },
+  "metadata": {
+    "description": "Agent skills for AlloyDB for PostgreSQL to query, manage, and monitor databases."
+  },
+  "plugins": [
+    {
+      "name": "alloydb",
+      "source": "./"
+    }
+  ]
+}
