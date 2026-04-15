@@ -218,10 +218,9 @@ This repository includes the following skill sets:
 
 ## Additional Agent Skills
 
-Find more skills at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
-- [Cloud SQL for PostgreSQL](https://github.com/gemini-cli-extensions/cloud-sql-postgresql)
-- [BigQuery](https://github.com/gemini-cli-extensions/bigquery-data-analytics)
-- [Firestore](https://github.com/gemini-cli-extensions/firestore-native)
+Find additional skills to support your entire software development lifecycle at [github.com/gemini-cli-extensions](https://github.com/gemini-cli-extensions), including:
+* [Generic PostgreSQL extension](https://github.com/gemini-cli-extensions/postgres)
+* [AlloyDB Observability extension](https://github.com/gemini-cli-extensions/alloydb-observability)
 
 ## Troubleshooting
 
