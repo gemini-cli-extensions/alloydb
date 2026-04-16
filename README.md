@@ -128,7 +128,7 @@ claude
 **3. Add the marketplace:**
 
 ```bash
-/plugin marketplace add https://github.com/gemini-cli-extensions/alloydb.git#0.1.11
+/plugin marketplace add https://github.com/gemini-cli-extensions/alloydb.git#0.2.0
 ```
 
 **4. Install the plugin:**
@@ -146,7 +146,7 @@ _(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or 
 **1. Clone the Repo:**
 
 ```bash
-git clone --branch 0.1.11 git@github.com:gemini-cli-extensions/alloydb.git
+git clone --branch 0.2.0 git@github.com:gemini-cli-extensions/alloydb.git
 ```
 
 **2. Install the plugin:**
@@ -194,7 +194,7 @@ _(Tip: Run `codex plugin list` or use the `/plugins` interactive menu to verify 
 **1. Clone the Repo:**
 
 ```bash
-git clone --branch 0.1.11 https://github.com/gemini-cli-extensions/alloydb.git
+git clone --branch 0.2.0 https://github.com/gemini-cli-extensions/alloydb.git
 ```
 
 **2. Install the skills:**
