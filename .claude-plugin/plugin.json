@@ -1,6 +1,6 @@
 {
   "name": "alloydb",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "description": "Create, connect, and interact with an AlloyDB for PostgreSQL database and data.",
   "author": {
     "name": "Google LLC",
@@ -49,7 +49,7 @@
     },
     "alloydb_postgres_password": {
       "title": "Password",
-      "description":  "(Optional) Password of the database user (Default: IAM user)",
+      "description": "(Optional) Password of the database user (Default: IAM user)",
       "type": "string",
       "sensitive": false
     },
