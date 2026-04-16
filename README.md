@@ -238,9 +238,9 @@ Interact with AlloyDB using natural language right from your agent:
 
 This repository includes the following skill sets:
 
-- [alloydb-postgres-admin]((./skills/alloydb-postgres-admin/SKILL.md)): Provision clusters/instances, monitor creation, and retrieve configuration.
-- [alloydb-postgres-access-management]((./skills/alloydb-postgres-access-management/SKILL.md)): Manage users, roles, and security settings.
-- [alloydb-postgres-data]((./skills/alloydb-postgres-data/SKILL.md)): Explore schemas, identify objects (views, triggers), and execute SQL.
+- [alloydb-postgres-admin](./skills/alloydb-postgres-admin/SKILL.md): Provision clusters/instances, monitor creation, and retrieve configuration.
+- [alloydb-postgres-access-management](./skills/alloydb-postgres-access-management/SKILL.md): Manage users, roles, and security settings.
+- [alloydb-postgres-data](./skills/alloydb-postgres-data/SKILL.md): Explore schemas, identify objects (views, triggers), and execute SQL.
 - [alloydb-postgres-monitor](./skills/alloydb-postgres-monitor/SKILL.md): Troubleshoot performance, analyze query plans, and monitor metrics.
 - [alloydb-postgres-health](./skills/alloydb-postgres-health/SKILL.md): Optimize storage, identify index issues, and manage maintenance.
 - [alloydb-postgres-optimize](./skills/alloydb-postgres-optimize/SKILL.md): Manage extensions and fine-tune engine-level settings.
