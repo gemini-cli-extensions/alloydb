@@ -1,0 +1,60 @@
+{
+  "scenarios": [
+    {
+      "id": "alloydb-debug-instance",
+      "starting_prompt": "Check on my AlloyDB databases in project ext-test-cloud-sql-postgres.",
+      "conversation_plan": "Ask the agent to list all AlloyDB instances in the project. Once all instances are listed, if 'daily-ci-evals-db' exists, get its details and validate it is RUNNABLE.",
+      "expected_trajectory": [
+        "list_instances",
+        "get_instance"
+      ],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "ext-test-cloud-sql-postgres"
+      },
+      "kind": "tools",
+      "max_turns": 3
+    },
+    {
+      "id": "alloydb-schema-tables-explore",
+      "starting_prompt": "I want to understand the structure of my database.",
+      "conversation_plan": "First, ask the agent to list the schemas in the database. After the agent provides the schemas, ask it to list the tables specifically for the 'public' schema.",
+      "expected_trajectory": [
+        "list_schemas",
+        "list_tables"
+      ],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "ext-test-cloud-sql-postgres"
+      },
+      "kind": "tools",
+      "max_turns": 3
+    },
+    {
+      "id": "alloydb-performance-check",
+      "starting_prompt": "Our database performance seems degraded.",
+      "conversation_plan": "Start by asking the agent to check for any active queries that are running for a long time (e.g., more than 10 seconds). After the agent responds, follow up by asking if there are any database locks that might be causing issues.",
+      "expected_trajectory": [
+        "list_active_queries",
+        "list_locks"
+      ],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "ext-test-cloud-sql-postgres"
+      },
+      "kind": "tools",
+      "max_turns": 3
+    },
+    {
+      "id": "alloydb-metrics-cpu-investigation",
+      "starting_prompt": "I'm worried about the database load for daily-ci-evals-db.",
+      "conversation_plan": "First, ask the agent to check the CPU utilization for the instance 'daily-ci-evals-db' for the last 5 minutes. After the agent provides the CPU data, ask it to check the overall database stats to see connection counts or transaction volume.",
+      "expected_trajectory": [
+        "get_system_metrics",
+        "list_database_stats"
+      ],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "ext-test-cloud-sql-postgres"
+      },
+      "kind": "tools",
+      "max_turns": 3
+    }
+  ]
+}
