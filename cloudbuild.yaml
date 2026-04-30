@@ -20,8 +20,8 @@ steps:
   # --- Evaluation Step ---
   - name: 'us-central1-docker.pkg.dev/cloud-db-nl2sql/evalbench/eval_server:latest'
     entrypoint: 'bash'
-    # Decrypts the secret from Secret Manager into the DB_PASSWORD environment variable
-    secretEnv: ['DB_PASSWORD', 'GITHUB_TOKEN']
+    # Decrypts the secret from Secret Manager into the EVAL_DB_PASSWORD environment variable
+    secretEnv: ['EVAL_DB_PASSWORD', 'GITHUB_TOKEN']
     args:
       - '-c'
       - |
@@ -67,7 +67,7 @@ steps:
 
         export EVAL_GCP_PROJECT_ID=$PROJECT_ID
         export EVAL_GCP_PROJECT_REGION=$_ALLOYDB_REGION
-        export GOOGLE_CLOUD_PROJECT=$PROJECT_ID
+        export EVAL_REPORTING_PROJECT=$_EVAL_REPORTING_PROJECT
         
         export ALLOYDB_POSTGRES_PROJECT=$PROJECT_ID
         export ALLOYDB_POSTGRES_REGION=$_ALLOYDB_REGION
@@ -76,7 +76,7 @@ steps:
         export ALLOYDB_POSTGRES_DATABASE=$_ALLOYDB_DATABASE
         export ALLOYDB_POSTGRES_USER=$_ALLOYDB_USER
         export ALLOYDB_POSTGRES_IP_TYPE=$_ALLOYDB_IP_TYPE
-        export ALLOYDB_POSTGRES_PASSWORD=$$DB_PASSWORD
+        export ALLOYDB_POSTGRES_PASSWORD=$$EVAL_DB_PASSWORD
 
         # Combine CI metadata with run config
         cat /workspace/evals/ci_metadata.yaml >> /workspace/evals/run_config.yaml
@@ -94,7 +94,7 @@ steps:
 
 availableSecrets:
   secretManager:
-  - versionName: projects/$PROJECT_ID/secrets/daily-ci-evals-db-password/versions/latest
-    env: 'DB_PASSWORD'
+  - versionName: projects/$PROJECT_ID/secrets/EVAL_DB_PASSWORD/versions/latest
+    env: 'EVAL_DB_PASSWORD'
   - versionName: projects/$PROJECT_ID/secrets/GITHUB_TOKEN/versions/latest
     env: 'GITHUB_TOKEN'
