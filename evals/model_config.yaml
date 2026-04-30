@@ -18,6 +18,7 @@ env:
   GOOGLE_CLOUD_PROJECT: "${GOOGLE_CLOUD_PROJECT}"
   GOOGLE_CLOUD_LOCATION: "global"
   GOOGLE_GENAI_USE_VERTEXAI: "true"
+  GEMINI_CLI_TRUST_WORKSPACE: "true"
 setup:
   extensions:
     "/workspace/alloydb":
