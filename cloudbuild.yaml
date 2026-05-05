@@ -41,7 +41,7 @@ steps:
 
         PR_DATA=$(cat pr_data.json)
 
-        # Extract labels and title from PR data (Use $$ to escape bash variables)
+        # Extract title from PR data (Use $$ to escape bash variables)
         PR_TITLE=$(echo "$$PR_DATA" | jq -r '.title')
 
         # Check if execution labels are present using exact matching via jq
