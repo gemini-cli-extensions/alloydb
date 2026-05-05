@@ -70,6 +70,7 @@ steps:
         export EVAL_GCP_PROJECT_ID=$PROJECT_ID
         export EVAL_GCP_PROJECT_REGION=$_ALLOYDB_REGION
         export EVAL_REPORTING_PROJECT=$_EVAL_REPORTING_PROJECT
+        export GOOGLE_CLOUD_PROJECT=$PROJECT_ID
 
         # AlloyDB PostgreSQL specific environment variables
         export ALLOYDB_POSTGRES_PROJECT=$PROJECT_ID
