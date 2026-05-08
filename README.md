@@ -125,7 +125,7 @@ In your terminal, set your environment vars as described in the [configuration s
 claude
 ```
 
-**4. Install the plugin:**
+**3. Install the plugin:**
 
 ```bash
 /plugin install alloydb@claude-plugins-official
