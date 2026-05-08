@@ -15,7 +15,7 @@
 options:
   logging: CLOUD_LOGGING_ONLY
   pool:
-    name: 'projects/ext-test-alloydb/locations/us-central1/workerPools/alloydb-evals-pool'
+    name: 'projects/$PROJECT_ID/locations/$_ALLOYDB_REGION/workerPools/alloydb-evals-pool'
 
 steps:
 
