@@ -17,8 +17,11 @@ generator: gemini_cli
 env:
   GOOGLE_CLOUD_PROJECT: "${GOOGLE_CLOUD_PROJECT}"
   GOOGLE_CLOUD_LOCATION: "global"
+  GOOGLE_CLOUD_REGION: "${EVAL_GCP_PROJECT_REGION}"
+  CLOUDSDK_COMPUTE_REGION: "${EVAL_GCP_PROJECT_REGION}"
   GOOGLE_GENAI_USE_VERTEXAI: "true"
   GEMINI_CLI_TRUST_WORKSPACE: "true"
+
 setup:
   extensions:
     "/workspace/alloydb":
