@@ -57,17 +57,17 @@ Evaluations run automatically via Cloud Build (`cloudbuild.yaml`) on pull reques
 
 All evaluation configurations and datasets are located in the [`evals/`](evals/) directory:
 
-*   **Conversational Datasets (`*_dataset.json`):** Define test scenarios for different models (e.g., `gemini_dataset.json`, `claude_dataset.json`). Each scenario contains:
+*   **Conversational Dataset (`dataset.json`):** Defines test scenarios for the model. Each scenario contains:
     *   `starting_prompt`: The initial prompt sent to the agent.
     *   `conversation_plan`: Instructions for the simulated user LLM to drive multi-turn interactions.
     *   `expected_trajectory`: The sequence of tool/skill calls expected to successfully complete the task.
-*   **Run Configurations (`*_run_config.yaml`):** Configure the EvalBench orchestrator, target model configs, and qualitative/performance scorers (e.g., goal completion, behavioral metrics, latency, token consumption).
+*   **Run Configuration (`run_config.yaml`):** Configures the EvalBench orchestrator, target model configs, and qualitative/performance scorers (e.g., goal completion, behavioral metrics, latency, token consumption).
 
 #### Maintaining and Adding Scenarios
 
-When adding new skills or modifying existing behavior, you should add or update corresponding scenarios in the dataset files:
+When adding new skills or modifying existing behavior, you should add or update corresponding scenarios in the dataset file:
 
-1.  Open `evals/gemini_dataset.json` (and/or `evals/claude_dataset.json`).
+1.  Open `evals/dataset.json`.
 2.  Add a new scenario block with a unique `id`, a clear `starting_prompt`, a detailed `conversation_plan`, and the `expected_trajectory` of tool calls.
 3.  Apply the `ci:run-evals` label while creating your pull request to trigger the evaluation pipeline.
 4.  The evaluation pipeline runs securely via Cloud Build. A maintainer will review the internal logs and results to verify your scenarios pass successfully.
