@@ -176,7 +176,7 @@ _(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or 
 <details>
 <summary id="codex">Codex</summary>
 
-**1. Install marketplace:**
+**1. Add the marketplace:**
 
 ```bash
 codex plugin marketplace add GoogleCloudPlatform/data-agent-kit
