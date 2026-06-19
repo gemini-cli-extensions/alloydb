@@ -191,7 +191,7 @@ codex plugin install alloydb@data-agent-kit
 **3. Set env vars:**
 Enter your environment vars as described in the [configuration section](#configuration).
 
-**4. (Optional) Update the marketplace:**
+**4. (Optional) Upgrade the marketplace:**
 ```sh
 codex plugin marketplace upgrade data-agent-kit
 ```
