@@ -176,49 +176,25 @@ _(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or 
 <details>
 <summary id="codex">Codex</summary>
 
-**1. Clone the Repo:**
+**1. Add the marketplace:**
 
 ```bash
-git clone --branch 0.2.0 git@github.com:gemini-cli-extensions/alloydb.git
+codex plugin marketplace add GoogleCloudPlatform/data-agent-kit
 ```
 
 **2. Install the plugin:**
 
 ```bash
-mkdir -p ~/.codex/plugins
-cp -R /absolute/path/to/alloydb ~/.codex/plugins/alloydb
+codex plugin install alloydb@data-agent-kit
 ```
 
 **3. Set env vars:**
 Enter your environment vars as described in the [configuration section](#configuration).
 
-**4. Create or update marketplace.json:**
-`~/.agents/plugins/marketplace.json`
-
-```json
-{
-  "name": "my-data-cloud-google-marketplace",
-  "interface": {
-    "displayName": "Google Data Cloud Skills"
-  },
-  "plugins": [
-    {
-      "name": "alloydb",
-      "source": {
-        "source": "local",
-        "path": "./plugins/alloydb"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Database"
-    }
-  ]
-}
+**4. (Optional) Upgrade the marketplace:**
+```bash
+codex plugin marketplace upgrade data-agent-kit
 ```
-
-_(Tip: Run `codex plugin list` or use the `/plugins` interactive menu to verify your installed plugins.)_
 
 </details>
 
