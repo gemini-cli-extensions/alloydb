@@ -131,7 +131,7 @@ You can install plugins directly from a remote GitHub repository.
 **1. Install the plugin:**
 
 ```bash
-agy plugins install https://github.com/gemini-cli-extensions/alloydb
+agy plugin install https://github.com/gemini-cli-extensions/alloydb
 ```
 
 **2. Set env vars:**
