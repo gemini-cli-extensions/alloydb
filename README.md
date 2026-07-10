@@ -173,7 +173,7 @@ codex plugin marketplace add GoogleCloudPlatform/data-agent-kit
 **2. Install the plugin:**
 
 ```bash
-codex plugin install alloydb@data-agent-kit
+codex plugin add alloydb@data-agent-kit
 ```
 
 **3. Set env vars:**
