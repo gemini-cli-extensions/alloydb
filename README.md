@@ -1,9 +1,9 @@
-# AlloyDB for PostgreSQL Agent Skills
+# AlloyDB for PostgreSQL
 
 > [!NOTE]
 > Currently in beta (pre-v1.0), and may see breaking changes until the first stable release (v1.0).
 
-This repository provides a set of agent skills to interact with [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) instances. These skills can be used with various AI agents, including [Antigravity](https://antigravity.google/), [Claude Code](https://claude.com/product/claude-code) and [Codex](https://developers.openai.com/codex), to manage your databases, execute queries, explore schemas, and troubleshoot issues using natural language prompts.
+This repository packages [MCP Toolbox](https://github.com/googleapis/mcp-toolbox)'s prebuilt `alloydb-postgres` server as a plugin/extension to interact with [AlloyDB for PostgreSQL](https://cloud.google.com/alloydb) instances. It can be used with various AI agents, including [Antigravity](https://antigravity.google/), [Claude Code](https://claude.com/product/claude-code) and [Codex](https://developers.openai.com/codex), to manage your databases, execute queries, explore schemas, and troubleshoot issues using natural language prompts.
 
 > [!IMPORTANT]
 > **We Want Your Feedback!**
@@ -14,7 +14,7 @@ This repository provides a set of agent skills to interact with [AlloyDB for Pos
 
 ## Table of Contents
 
-- [Why Use AlloyDB for PostgreSQL Agent Skills?](#why-use-alloydb-for-postgresql-agent-skills)
+- [Why Use AlloyDB for PostgreSQL?](#why-use-alloydb-for-postgresql)
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
   - [Configuration](#configuration)
@@ -22,14 +22,14 @@ This repository provides a set of agent skills to interact with [AlloyDB for Pos
     - [Antigravity](#antigravity)
     - [Claude Code](#claude-code)
     - [Codex](#codex)
-- [Installing using open agent skills tool](#installing-using-open-agent-skills-tool)
 - [Installing via a compatible Agent Plugins client](#installing-via-a-compatible-agent-plugins-client)
 - [Usage Examples](#usage-examples)
-- [Supported Skills](#supported-skills)
+- [Available Tools](#available-tools)
+- [Generating Skills Instead](#generating-skills-instead)
 - [Additional Agent Skills](#additional-agent-skills)
 - [Troubleshooting](#troubleshooting)
 
-## Why Use AlloyDB for PostgreSQL Agent Skills?
+## Why Use AlloyDB for PostgreSQL?
 
 - **Seamless Workflow:** Integrates seamlessly into your AI agent's environment. No need to constantly switch contexts for common database tasks.
 - **Natural Language Queries:** Stop wrestling with complex commands. Explore schemas and query data by describing what you want in plain English.
@@ -46,6 +46,7 @@ Before you begin, ensure you have the following:
      - [Antigravity 2.0](https://antigravity.google/product/antigravity-2) version **v2.0.0** or higher.
   - [Claude Code](https://claude.com/product/claude-code) version **v2.1.94** or higher.
   - [Codex](https://developers.openai.com/codex) **v0.117.0** or higher.
+- [Node.js](https://nodejs.org/) — the MCP server runs via `npx`.
 - A Google Cloud project with the **AlloyDB API** enabled.
 - Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment.
 - IAM Permissions:
@@ -74,13 +75,13 @@ Please keep these env vars handy during the installation process:
 
 ### Installation & Usage
 
-To start interacting with your database, install the skills for your preferred AI agent, then launch the agent and use natural language to ask questions or perform tasks.
+To start interacting with your database, install the extension for your preferred AI agent, then launch the agent and use natural language to ask questions or perform tasks.
 
 For the latest version, check the [releases page][releases].
 
-<!-- {x-release-please-start-version} -->
-
 [releases]: https://github.com/gemini-cli-extensions/alloydb/releases
+
+<!-- {x-release-please-start-version} -->
 
 <details open>
 <summary id="antigravity">Antigravity</summary>
@@ -103,28 +104,18 @@ See <a href="https://antigravity.google/docs/gcli-migration">Migrating from Gemi
 
 #### Antigravity 2.0 (IDE)
 
-**1. Clone the Repo:**
+**1. Install the plugin:**
+
+Install the plugin directly from the remote GitHub repository:
 
 ```bash
-git clone --branch 0.2.0 https://github.com/gemini-cli-extensions/alloydb.git
+agy plugin install https://github.com/gemini-cli-extensions/alloydb
 ```
 
-**2. Install the skills:**
-
-Choose a location for the skills:
-- **Global (all workspaces):** `~/.gemini/antigravity/skills/`
-- **Workspace-specific:** `<workspace-root>/.agents/skills/`
-
-Copy the skill folders from the cloned repository's `skills/` directory to your chosen location:
-
-```bash
-cp -R alloydb/skills/* ~/.gemini/antigravity/skills/
-```
-
-**3. Set env vars:**
+**2. Set env vars:**
 Set your environment vars as described in the [configuration section](#configuration).
 
-_(Tip: Antigravity 2.0 automatically discovers skills in these directories at the start of a session. You can verify they are active by running the `/skills` command in your active session.)_
+_(Tip: You can verify the MCP server is active by running the `/mcp` command in your active session.)_
 
 #### Antigravity CLI
 
@@ -144,7 +135,6 @@ Set your environment vars as described in the [configuration section](#configura
 <details>
 <summary id="claude-code">Claude Code</summary>
 
-
 **1. Set env vars:**
 In your terminal, set your environment vars as described in the [configuration section](#configuration).
 
@@ -160,13 +150,13 @@ claude
 /plugin install alloydb@claude-plugins-official
 ```
 
-_(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or `/reload-plugins` if you just installed it.)_
+_(Tip: Run `/plugin list` inside Claude Code to verify the plugin is active, or `/reload-plugins` if you just installed it.)
 </details>
 
 <details>
 <summary id="codex">Codex</summary>
 
-**1. Add the marketplace:**
+**1. Install marketplace:**
 
 ```bash
 codex plugin marketplace add GoogleCloudPlatform/data-agent-kit
@@ -181,30 +171,14 @@ codex plugin add alloydb@data-agent-kit
 **3. Set env vars:**
 Enter your environment vars as described in the [configuration section](#configuration).
 
-**4. (Optional) Upgrade the marketplace:**
-```bash
+**4. (Optional) Update the marketplace:**
+```sh
 codex plugin marketplace upgrade data-agent-kit
 ```
 
 </details>
 
-## Installing using [open agent skills tool](https://github.com/vercel-labs/skills)
-
-You can install skills using the `npx skills` command.
-
-**1. Install the skills:**
-
-Run the following command in your terminal to automatically download and register the skills:
-
-```bash
-npx skills add https://github.com/gemini-cli-extensions/alloydb/tree/0.2.0
-```
-
-For detailed info check out the [Skills npm package](https://www.npmjs.com/package/skills).
-
-**2. Set env vars:**
-Set your environment vars as described in the [configuration section](#configuration).
-
+## Installing via a compatible Agent Plugins client
 ## Installing via a compatible Agent Plugins client
 
 This repository is a valid [Agent Plugins](https://github.com/agentplugins/agent-plugins-spec) (v1) plugin. Any [Agent Plugins–compatible client](https://agent-plugins.org/compatible-clients) can install it directly using its own built-in plugin command — no extra tooling required — by pointing at this repository:
@@ -235,17 +209,44 @@ Interact with AlloyDB using natural language right from your agent:
 - **Generate Code:**
     - "Generate a Python dataclass to represent the 'customers' table."
 
-## Supported Skills
+## Available Tools
 
-This repository includes the following skill sets:
+The tools come from MCP Toolbox's prebuilt `alloydb-postgres` server, grouped into toolsets:
 
-- [alloydb-postgres-admin](./skills/alloydb-postgres-admin/SKILL.md): Provision clusters/instances, monitor creation, and retrieve configuration.
-- [alloydb-postgres-access-management](./skills/alloydb-postgres-access-management/SKILL.md): Manage users, roles, and security settings.
-- [alloydb-postgres-data](./skills/alloydb-postgres-data/SKILL.md): Explore schemas, identify objects (views, triggers), and execute SQL.
-- [alloydb-postgres-monitor](./skills/alloydb-postgres-monitor/SKILL.md): Troubleshoot performance, analyze query plans, and monitor metrics.
-- [alloydb-postgres-health](./skills/alloydb-postgres-health/SKILL.md): Optimize storage, identify index issues, and manage maintenance.
-- [alloydb-postgres-optimize](./skills/alloydb-postgres-optimize/SKILL.md): Manage extensions and fine-tune engine-level settings.
-- [alloydb-postgres-replication](./skills/alloydb-postgres-replication/SKILL.md): Monitor replication health and manage sync states.
+- **admin** - Use these tools when you need to provision new AlloyDB clusters and instances, monitor their creation status, and retrieve high-level configuration or health data for the environment.
+- **access-management** - Use these tools when you need to manage database users, inspect permissions and roles, and verify global configuration parameters related to security and access control.
+- **data** - Use these tools when you need to explore the database schema, identify objects like views and triggers, and execute custom SQL queries to interact with your data.
+- **monitor** - Use these tools when you need to troubleshoot slow performance, analyze query execution plans, identify resource-heavy processes, and monitor system-level PromQL metrics.
+- **health** - Use these tools when you need to optimize storage, identify index issues, analyze table statistics, or manage autovacuum and tablespace configurations to maintain peak database health.
+- **optimize** - Use these tools when you need to discover and manage PostgreSQL extensions or fine-tune engine-level settings such as memory allocation and server configuration parameters.
+- **replication** - Use these tools when you need to monitor replication health, manage sync states between nodes, and ensure the high availability and data distribution of your AlloyDB cluster.
+
+For the full, up-to-date list, see the [`alloydb-postgres` prebuilt config](https://github.com/googleapis/mcp-toolbox/blob/main/internal/prebuiltconfigs/tools/alloydb-postgres.yaml)
+in the MCP Toolbox repository.
+
+## Generating Skills Instead
+
+The tool-backed skills this plugin used to ship were generated from the same prebuilt
+toolsets. If your agent lacks deferred tool loading, or you prefer skills, regenerate
+them with the script in this repository:
+
+```bash
+VERSION=<toolbox version> ./.github/scripts/generate_skills.sh
+```
+
+Use the toolbox version pinned in [`mcp.json`](./mcp.json). A single toolset, without
+the script:
+
+```bash
+npx @toolbox-sdk/server@<toolbox version> --prebuilt alloydb-postgres skills-generate \
+  --name "<skill name>" \
+  --toolset "<toolset>" \
+  --description "<what it is for>"
+```
+
+The generated scripts call the toolbox through `npx`, so no binary download is needed.
+See [Generate Agent Skills](https://github.com/googleapis/mcp-toolbox#generate-agent-skills)
+in the MCP Toolbox repository.
 
 ## Additional Agent Skills
 
@@ -261,5 +262,5 @@ Common issues:
 
 - "failed to find default credentials: google: could not find default credentials.": Ensure [Application Default Credentials](https://cloud.google.com/docs/authentication/gcloud) are available in your environment. See [Set up Application Default Credentials](https://cloud.google.com/docs/authentication/external/set-up-adc) for more information.
 - "✖ Error during discovery for server: MCP error -32000: Connection closed": The database connection has not been established. Ensure your configuration is set via environment variables.
-- "✖ MCP ERROR: Error: spawn .../toolbox ENOENT": The Toolbox binary did not download correctly. Ensure you are using the latest version of your agent.
+- "✖ MCP ERROR: Error: spawn npx ENOENT": Node.js is not installed, or `npx` is not on your `PATH`. Install Node.js, which provides `npx`.
 - "cannot execute binary file": The Toolbox binary did not download correctly. Ensure the correct binary for your OS/Architecture has been downloaded. See [Installing the server](https://mcp-toolbox.dev/documentation/introduction/#install-toolbox) for more information.

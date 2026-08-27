@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "alloydb-postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@toolbox-sdk/server@1.9.0",
+        "--prebuilt",
+        "alloydb-postgres",
+        "--stdio"
+      ],
+      "env_vars": [
+        "ALLOYDB_POSTGRES_PROJECT",
+        "ALLOYDB_POSTGRES_REGION",
+        "ALLOYDB_POSTGRES_CLUSTER",
+        "ALLOYDB_POSTGRES_INSTANCE",
+        "ALLOYDB_POSTGRES_DATABASE",
+        "ALLOYDB_POSTGRES_USER",
+        "ALLOYDB_POSTGRES_PASSWORD",
+        "ALLOYDB_POSTGRES_IP_TYPE"
+      ]
+    }
+  }
+}
